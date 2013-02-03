@@ -1,0 +1,24 @@
+[user]
+    name = Pavel Sedlák
+    email = psedlak@redhat.com
+
+[color]
+    diff = auto
+    branch = auto
+    status = auto
+
+[alias]
+    st = status
+    ci = commit
+    br = branch
+    co = checkout
+    df = diff
+    dfc = diff --cached
+    lg = log -p
+    lom = log master..origin/master
+    lns = log --name-status
+
+[core]
+    autocrlf = input
+    attributesfile = ~/.gitattributes
+
