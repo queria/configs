@@ -20,9 +20,9 @@ export PATH
 [[ -z "$MANPATH" ]] && export MANPATH="$HOME/all/docs/man:$(manpath)"
 
 # for my custom built git
-#PATH="/all/src/git:${PATH}"
-#GIT_EXEC_PATH="/all/src/git"
-#GITPERLLIB="/all/src/git/perl/blib/lib"
+#PATH="$HOME/all/src/git:${PATH}"
+#GIT_EXEC_PATH="$HOME/all/src/git"
+#GITPERLLIB="$HOME/all/src/git/perl/blib/lib"
 #export GIT_EXEC_PATH PATH GITPERLLIB
 
 
@@ -77,4 +77,4 @@ uservm() {
 [[ -f ~/all/src/machine-tools/lib/rhosqe_env ]] && . ~/all/src/machine-tools/lib/rhosqe_env
 
 export LIBVIRT_DEFAULT_URI=qemu:///system
-export GOPATH=/all/src/go
+export GOPATH=$HOME/all/src/go
