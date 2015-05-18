@@ -22,7 +22,7 @@ deplink() {
         if [[ -L "$tgt" ]]; then
             src_tgt="$(readlink -f "$tgt")"
             if [[ "$src" = "$src_tgt" ]]; then
-                echo "‘$tgt’ -> ‘$src’ [already]"
+                echo -e "\033[1;30m‘$tgt’ -> ‘$src’ [already]\033[00m";
                 # link already matches
                 return
             fi
@@ -65,6 +65,7 @@ deploy_configs() {
     deplink .bc "$HOME/.bc"
     deplink .gitattributes "$HOME/.gitattributes"
     deplink .gitconfig "$HOME/.gitconfig"
+    deplink .Xdefaults "$HOME/.Xdefaults"
     deplink "$HOME/.vim/qs_vimrc" "$HOME/.vimrc"
 }
 fin_message() {
