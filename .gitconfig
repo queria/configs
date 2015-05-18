@@ -6,6 +6,7 @@
     diff = auto
     branch = auto
     status = auto
+    grep = auto
 
 [alias]
     st = status
@@ -15,10 +16,39 @@
     df = diff
     dfc = diff --cached
     lg = log -p
-    lom = log master..origin/master
+    lom = log master..origin/master --no-merges
+    lomo = log master..origin/master --no-merges --oneline
+    logm = log --no-merges
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
     lns = log --name-status
+    puf = pull --ff-only
+    up = pull up master
+    amend = commit --amend
+    pum = "!git pull; git merged-cleanup"
+    zzz = "!_() { git branch -m $1 zzz___/$1; }; _"
+    wake = "!_() { git branch -m $1 ${1/zzz___\\//}; }; _"
 
 [core]
     autocrlf = input
     attributesfile = ~/.gitattributes
+    excludesfile = ~/.gitexcludes
+    #gitproxy = nc localhost 9418
+#/all/src/ngitcached/git-local-proxy
 
+[push]
+	default = upstream
+[gui]
+	historybrowser = gitk
+	diffcontext = 10
+[merge]
+	tool = xxdiff
+[diff]
+	tool = vimdiff
+    guitool = kompare
+[difftool]
+	prompt = false
+[verify "branch"]
+	base = master
+	target = verify
+[verify]
+	switchback = false
