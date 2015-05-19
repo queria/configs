@@ -59,15 +59,6 @@ deploy_scripts() {
         git clone git@github.com:queria/my-vim.git "$HOME/.vim"
     fi
 }
-deploy_configs() {
-    deplink .bash_profile "$HOME/.bash_profile"
-    deplink .bashrc "$HOME/.bashrc"
-    deplink .bc "$HOME/.bc"
-    deplink .gitattributes "$HOME/.gitattributes"
-    deplink .gitconfig "$HOME/.gitconfig"
-    deplink .Xdefaults "$HOME/.Xdefaults"
-    deplink "$HOME/.vim/qs_vimrc" "$HOME/.vimrc"
-}
 fin_message() {
     if ! $CHANGED; then
         echo ""
@@ -82,6 +73,20 @@ fin_message() {
     else
         rmdir "$BUPD"
     fi
+}
+deploy_configs() {
+    deplink .bash_profile "$HOME/.bash_profile"
+    deplink .bashrc "$HOME/.bashrc"
+    deplink .bashnorc "$HOME/.bashnorc"
+    deplink .bc "$HOME/.bc"
+    deplink .gitattributes "$HOME/.gitattributes"
+    deplink .gitconfig "$HOME/.gitconfig"
+    deplink .Xdefaults "$HOME/.Xdefaults"
+    [[ -s "$HOME/.i3" ]] || mkdir "$HOME/.i3"
+    deplink i3-config "$HOME/.i3/config"
+    deplink i3-status "$HOME/.i3status.conf"
+
+    deplink "$HOME/.vim/qs_vimrc" "$HOME/.vimrc"
 }
 
 
