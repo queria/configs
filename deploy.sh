@@ -77,6 +77,7 @@ fin_message() {
 deploy_configs() {
     deplink .bash_profile "$HOME/.bash_profile"
     deplink .bashrc "$HOME/.bashrc"
+    deplink .bash_aliases "$HOME/.bash_aliases"
     deplink .bashnorc "$HOME/.bashnorc"
     deplink .bc "$HOME/.bc"
     deplink .gitattributes "$HOME/.gitattributes"
