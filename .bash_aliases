@@ -355,6 +355,10 @@ if [[ -f ~/.bash_aliases_mv ]]; then
     }
 fi
 
+preloadstate() {
+    journalctl -a -t rc.local -b -0 --follow;
+}
+
 
 
 light() { dyncol switch queria-dark; }

@@ -78,3 +78,5 @@ uservm() {
 
 export LIBVIRT_DEFAULT_URI=qemu:///system
 export GOPATH=$HOME/all/src/go
+
+[[ -f ~/keystonerc_psedlak ]] && source ~/keystonerc_psedlak
