@@ -155,10 +155,12 @@ for_window [title="QSRun"] floating enable, border none
 #for_window [class="Firefox"] move container to workspace 2, workspace 2
 for_window [class="Gvim"] floating enable
 for_window [class="explorer.exe" title="Emperor.exe"] floating enable, border none
+for_window [class="winbox.exe"] floating enable
 for_window [class="Winff"] floating enable
 for_window [class="URxvt" title="calc"] floating enable, move absolute position 940px 535px
 for_window [class="URxvt" title="ipython"] floating enable, move absolute position 940px 535px
 for_window [class="URxvt" title="^temp$"] floating enable, move absolute position 940px 535px
+for_window [title="Planet Explorers"] floating enable
 #geometry { "x": 948, "y": 559 }
 
 assign [class="Firefox"] 2
@@ -207,7 +209,8 @@ bindsym XF86Forward focus right
 bindsym $mod+n exec --no-startup-id $home/all/src/nmcli-dmenu/nmcli_dmenu
 bindsym Mod1+F2 exec --no-startup-id /usr/local/bin/dmenu_hist
 bindsym Mod1+F3 exec --no-startup-id $home/bin/qsrun
-bindsym XF86Launch1 exec --no-startup-id $home/bin/browser
+bindsym XF86Launch1 exec --no-startup-id browser
+bindsym XF86AudioMedia exec --no-startup-id browser
 bindsym $mod+XF86Launch1 exec --no-startup-id $home/bin/chrome
 bindsym $mod+i exec /usr/bin/konversation
 bindsym $mod+g exec /usr/bin/gvim
