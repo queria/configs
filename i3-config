@@ -161,6 +161,7 @@ for_window [class="URxvt" title="calc"] floating enable, move absolute position 
 for_window [class="URxvt" title="ipython"] floating enable, move absolute position 940px 535px
 for_window [class="URxvt" title="^temp$"] floating enable, move absolute position 940px 535px
 for_window [title="Planet Explorers"] floating enable
+for_window [title="^Event Tester$"] floating enable
 #geometry { "x": 948, "y": 559 }
 
 assign [class="Firefox"] 2
@@ -198,6 +199,7 @@ bindsym $mod+Shift+Escape exec --no-startup-id $scripts/i3-shutdown reboot
 
 # window/workspace
 bindsym $mod+q kill
+bindsym Print workspace prev
 bindsym Scroll_Lock workspace prev
 bindsym Pause workspace next
 bindsym $mod+XF86Back workspace prev
