@@ -80,7 +80,7 @@ URxvt*foreground: gray
 ! URxvt*backgroundPixmap:               file[;geom]
 ! URxvt*iconFile:                       file
 ! URxvt*font:                           fontname
-URxvt*font: xft:DejaVu Sans Mono:style=book:pixelsize=12:antialias=false
+URxvt*font: xft:DejaVu Sans Mono:style=book:pixelsize=12:antialias=true
 ! URxvt*boldFont:                       fontname
 ! URxvt*italicFont:                     fontname
 ! URxvt*boldItalicFont:                 fontname
@@ -142,3 +142,7 @@ URxvt*saveLines: 65500
 ! URxvt*tabbar-fg:                      colour
 ! URxvt*url-launcher:                   string
 URxvt*url-launcher: browser
+
+Xft.antialias: true
+Xft.hinting: true
+Xft.hintstyle: hintfull
