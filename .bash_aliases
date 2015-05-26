@@ -363,3 +363,4 @@ preloadstate() {
 
 light() { dyncol switch queria-dark; }
 dark() { dyncol switch queria; }
+poekill() { pkill PathOfExile.exe; }

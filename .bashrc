@@ -10,7 +10,7 @@ fi
 
 # User specific aliases and functions
 export EDITOR=/usr/bin/vim
-export BC_ENV_ARGS="/home/psedlak/.bc"
+export BC_ENV_ARGS="$HOME/.bc"
 #PATH="$HOME/all/src/go/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/all/src/scripts/:$PATH"
