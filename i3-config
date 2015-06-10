@@ -5,15 +5,14 @@
 # this file and re-run i3-config-wizard(1).
 #
 
-exec --no-startup-id queria-autostart.sh
-
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
-set $home /home/queria
-set $scripts /home/queria/all/src/scripts
+set $scripts $HOME/all/src/scripts
+
+exec --no-startup-id $scripts/queria-autostart.sh
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -161,6 +160,7 @@ for_window [class="URxvt" title="calc"] floating enable, move absolute position 
 for_window [class="URxvt" title="ipython"] floating enable, move absolute position 940px 535px
 for_window [class="URxvt" title="^temp$"] floating enable, move absolute position 940px 535px
 for_window [title="Planet Explorers"] floating enable
+for_window [title="^Event Tester$"] floating enable
 #geometry { "x": 948, "y": 559 }
 
 assign [class="Firefox"] 2
@@ -198,6 +198,7 @@ bindsym $mod+Shift+Escape exec --no-startup-id $scripts/i3-shutdown reboot
 
 # window/workspace
 bindsym $mod+q kill
+bindsym Print workspace prev
 bindsym Scroll_Lock workspace prev
 bindsym Pause workspace next
 bindsym $mod+XF86Back workspace prev
@@ -206,13 +207,13 @@ bindsym XF86Back focus left
 bindsym XF86Forward focus right
 
 # apps
-bindsym $mod+n exec --no-startup-id $home/all/src/nmcli-dmenu/nmcli_dmenu
+bindsym $mod+n exec --no-startup-id $HOME/all/src/nmcli-dmenu/nmcli_dmenu
 bindsym Mod1+F2 exec --no-startup-id /usr/local/bin/dmenu_hist
-bindsym Mod1+F3 exec --no-startup-id $home/bin/qsrun
+bindsym Mod1+F3 exec --no-startup-id qsrun
 bindsym XF86Launch1 exec --no-startup-id browser
 bindsym XF86AudioMedia exec --no-startup-id browser
 bindsym $mod+b exec --no-startup-id browser
-bindsym $mod+XF86Launch1 exec --no-startup-id $home/bin/chrome
+bindsym $mod+XF86Launch1 exec --no-startup-id chrome
 bindsym $mod+i exec /usr/bin/konversation
 bindsym $mod+g exec /usr/bin/gvim
 bindsym $mod+h exec --no-startup-id $scripts/headphones on
@@ -221,8 +222,8 @@ bindsym $mod+c exec --no-startup-id /usr/bin/urxvtc -title calc -e /usr/bin/bc
 bindsym $mod+p exec --no-startup-id /usr/bin/urxvtc -title ipython -e /usr/bin/ipython
 bindsym $mod+k exec ksnapshot
 
-bindsym $mod+Mod1+s exec --no-startup-id /all/src/scripts/qxdo space
-bindsym $mod+Mod1+c exec --no-startup-id /all/src/scripts/qxdo
-bindsym $mod+Mod1+x exec --no-startup-id /all/src/scripts/qxdo stop
+bindsym $mod+Mod1+s exec --no-startup-id $scripts/qxdo space
+bindsym $mod+Mod1+c exec --no-startup-id $scripts/qxdo
+bindsym $mod+Mod1+x exec --no-startup-id $scripts/qxdo stop
 bindsym $mod+Mod1+y exec --no-startup-id "sh -c 'pkill qxdo; pkill xdotool'"
 
