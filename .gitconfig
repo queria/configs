@@ -20,6 +20,7 @@
     lomo = log master..origin/master --no-merges --oneline
     logm = log --no-merges
     lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    ll = log --oneline
     lns = log --name-status
     puf = pull --ff-only
     up = pull up master
