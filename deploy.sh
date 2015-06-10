@@ -57,6 +57,9 @@ deploy_scripts() {
     if [[ ! -d "$HOME/.vim" ]]; then
         CHANGED=true
         git clone git@github.com:queria/my-vim.git "$HOME/.vim"
+        cd "$HOME/.vim"
+        git submodule init
+        git submodule update --remote
     fi
 }
 fin_message() {
