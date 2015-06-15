@@ -176,11 +176,12 @@ bindsym $mod+F7 exec --no-startup-id $scripts/monitor-switch.sh --safe
 bindsym $mod+m exec --no-startup-id $scripts/monitor-switch.sh --safe
 
 # terminal
-bindsym $mod+Return workspace 1; exec --no-startup-id /usr/bin/urxvtc
+bindsym $mod+Return workspace 1; exec --no-startup-id /usr/bin/urxvtc -e screen -x -p +
 bindsym Mod1+F1 exec --no-startup-id /usr/bin/urxvtc -title temp
 bindsym $mod+Shift+Return workspace 4; exec --no-startup-id /usr/bin/urxvtc -e su
 bindsym $mod+Mod1+Return exec --no-startup-id /usr/bin/urxvtc -title queria -e su - queria
 bindsym $mod+Control+Return exec --no-startup-id /usr/bin/urxvtc -title shadow -e /bin/bash --rcfile ~/.bashnorc
+bindsym $mod+t exec --no-startup-id $scripts/scrr2urxvt
 
 ### SESSION
 # lock
