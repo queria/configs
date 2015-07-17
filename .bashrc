@@ -5,19 +5,29 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-[[ -e "$HOME/all" && ! -e "$HOME/all/tmp" ]] && (mkdir /tmp/ps_tmp; ln -snf /tmp/ps_tmp "$HOME/all/tmp")
+cd $HOME
 
+if [[ -e "$HOME/all" && ! -e "$HOME/all/tmp" ]]; then 
+    mkdir /tmp/ps_tmp;
+    ln -snf /tmp/ps_tmp "$HOME/all/tmp"
+fi
 
 # User specific aliases and functions
 export EDITOR=/usr/bin/vim
 export BC_ENV_ARGS="$HOME/.bc"
+
 #PATH="$HOME/all/src/go/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/all/src/scripts/:$PATH"
 PATH="$HOME/bin:$PATH"
-[[ -d "$HOME/all/src/os-kit/" ]] && PATH="$PATH:$HOME/all/src/os-kit"
+if [[ -d "$HOME/all/src/os-kit/" ]]; then
+    PATH="$PATH:$HOME/all/src/os-kit";
+fi
 export PATH
-[[ -z "$MANPATH" ]] && export MANPATH="$HOME/all/docs/man:$(manpath)"
+
+if [[ -z "$MANPATH" ]]; then
+    export MANPATH="$HOME/all/docs/man:$(manpath)"
+fi
 
 # for my custom built git
 #PATH="$HOME/all/src/git:${PATH}"
@@ -26,19 +36,7 @@ export PATH
 #export GIT_EXEC_PATH PATH GITPERLLIB
 
 
-
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
-
-shopt -s histappend
-shopt -s lithist
-export HISTTIMEFORMAT="%y-%m-%d - %H:%M:%S"
-export HISTSIZE=100000
-export HISTFILESIZE=${HISTSIZE}
-export HISTCONTROL=ignoreboth:erasedups
-export HISTIGNORE="bashno"
-
-export PS1='\[\033[01;32m\]\u@\h\[\033[01;32m\] \W \$? \$\[\033[00m\] '
-[[ -s "$HOME/.prompt_color" ]] && source "$HOME/.prompt_color"
 
 
 parse-git-branch() {
@@ -51,15 +49,26 @@ parse-git-branch() {
     #mark='⋘ ⋙'
     if [[ ! -z "$BR" ]]; then
         local mark='〒'
+        local markE=''
         local stashed="$(git stash list 2>/dev/null| wc -l)"
         local clean="$(git status --porcelain 2>/dev/null| wc -l)"
         if [[ "$clean" = "0" ]]; then clean="01;30m<clean>"; else clean="00;35m<dirty>"; fi
-        echo -e "$mark\033[00;07m$BR\033[00m \033[$clean+$stashed\033[00m"
+        echo -e "$mark\033[00;07m$BR\033[00m$markE \033[$clean+$stashed\033[00m"
     fi
 }
-export PS1="\[\033[01;30m=>\$?\[\033[00m  \$(parse-git-branch) \n$PS1"
- 
+export PS1='\033[01;32m\u@\h\033[01;32m \w \033[00m '
+[[ -s "$HOME/.prompt_color" ]] && source "$HOME/.prompt_color"
+#export PS1="\[\033[01;30m=>\$?\[\033[00m  \$(parse-git-branch) \n$PS1"
+export PS1="\033[01;30m=>\$?\033[00m $PS1\$(parse-git-branch)\n\033[01;32m$\033[00m "
 
+
+shopt -s histappend
+shopt -s lithist
+export HISTTIMEFORMAT="%y-%m-%d - %H:%M:%S"
+export HISTSIZE=100000
+export HISTFILESIZE=${HISTSIZE}
+export HISTCONTROL=ignoreboth:erasedups
+export HISTIGNORE="bashno"
 shopt -s checkhash
 shopt -s no_empty_cmd_completion
 
@@ -79,4 +88,6 @@ uservm() {
 export LIBVIRT_DEFAULT_URI=qemu:///system
 export GOPATH=$HOME/all/src/go
 
-[[ -f ~/keystonerc_psedlak ]] && source ~/keystonerc_psedlak
+if [[ -f ~/keystonerc_psedlak ]]; then
+    source ~/keystonerc_psedlak;
+fi
