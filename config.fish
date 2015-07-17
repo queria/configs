@@ -65,7 +65,6 @@ function fish_prompt
 end
 
 function fish_greeting
-    fortune
 end
 
 #export PS1="\[\033[01;30m=>\$?\[\033[00m  \$(parse-git-branch) \n$PS1"
