@@ -90,6 +90,8 @@ function vw
     end
 end
 
+function mp; mpv $argv; end
+function mps; addic7ed $argv[1]; mp $argv; end
 function youtube-dl; youtube-dl --title --no-mtime $argv; end
 
 function bashno
