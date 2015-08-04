@@ -49,7 +49,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git autojump bgnotify)
 
 # User configuration
 
@@ -79,4 +79,13 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
+
+setopt NO_HUP
+
+bgnotify_formatted () {
+    [ $1 -eq 0 ] && title="#success (took $3 s)"  || title="#fail (took $3 s)" 
+    notify-send -a zsh "$title" "$2"
+    #bgnotify "$title" "$2"
+}
