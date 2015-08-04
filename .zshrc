@@ -15,7 +15,7 @@ ZSH_THEME="robbyrussell"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -49,11 +49,21 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump bgnotify)
+plugins=(git autojump bgnotify chucknorris history-substring-search lol python screen)
 
 # User configuration
 
 source $ZSH/oh-my-zsh.sh
+
+##### Snippets from plugins where there is some issue (for me)
+##### or i want different behaviour
+#
+# run chucknorris at start of new term
+fortune -a $ZSH/plugins/chucknorris/fortunes
+#
+# Make zsh know about hosts already accessed by SSH (i don't want rest of the common-aliases)
+zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+###########
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -85,7 +95,8 @@ source $ZSH/oh-my-zsh.sh
 setopt NO_HUP
 
 bgnotify_formatted () {
-    [ $1 -eq 0 ] && title="#success (took $3 s)"  || title="#fail (took $3 s)" 
+    [ $1 -eq 0 ] && title="#success (took $3 s)"  || title="#fail (took $3 s)"
     notify-send -a zsh "$title" "$2"
     #bgnotify "$title" "$2"
 }
+
