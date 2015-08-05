@@ -102,6 +102,8 @@ deploy_repos() {
     deprepo git@github.com:queria/scripts.git "$HOME/all/src/scripts"
     deprepo git@github.com:queria/my-vim.git "$HOME/.vim" "submodules"
     deprepo https://github.com/robbyrussell/oh-my-zsh.git "$HOME/.oh-my-zsh"
+    deprepo git@github.com:tarruda/zsh-autosuggestions.git "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+    deprepo git@github.com:zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
 }
 deploy_configs() {
     deplink .bash_profile "$HOME/.bash_profile"
