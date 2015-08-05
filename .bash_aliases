@@ -4,7 +4,7 @@
 
 export GREP_COLOR=31
 
-unalias -a
+[[ "$SHELL" != "/usr/bin/zsh" ]] && unalias -a
 
 alias grep='grep --color=auto'
 alias less='less -r'
