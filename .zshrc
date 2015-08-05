@@ -5,7 +5,9 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="candy"
+
+RPS1='%{$fg[green]%}%?%{$reset_color%}'
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -98,5 +100,13 @@ bgnotify_formatted () {
     [ $1 -eq 0 ] && title="#success (took $3 s)"  || title="#fail (took $3 s)"
     notify-send -a zsh "$title" "$2"
     #bgnotify "$title" "$2"
+}
+git_prompt_info () {
+    local ref
+    local stashed
+    ref=$(command git symbolic-ref HEAD 2> /dev/null)  || ref=$(command git rev-parse --short HEAD 2> /dev/null)  || return 0
+    stashed="$(git stash list 2>/dev/null| wc -l)"
+    [[ $stashed -gt 0 ]] && stashed="+$stashed" || stashed=""
+    echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}${stashed}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
 
