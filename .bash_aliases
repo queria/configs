@@ -1,5 +1,3 @@
-#!/bin/bash
-# ~/.bash_aliases
 # vim: syn=sh:et:ts=4:sw=4
 
 export GREP_COLOR=31
@@ -15,6 +13,8 @@ alias vv='view'
 export PAGER='less'
 #export PAGER='view'
 
+unalias ls
+unalias ll
 alias ls="ls --color=auto"
 alias cal='cal -m'
 
