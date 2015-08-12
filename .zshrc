@@ -95,6 +95,9 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
 
 setopt NO_HUP
+setopt HISTIGNORESPACE
+
+[ -z "$ZSH_CDHOME" ] && export ZSH_CDHOME=1 && cd $HOME
 
 bgnotify_formatted () {
     [ $1 -eq 0 ] && title="#success (took $3 s)"  || title="#fail (took $3 s)"
