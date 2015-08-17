@@ -7,8 +7,6 @@ export ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="candy"
 
-RPS1='%{$fg[green]%}%?%{$reset_color%}'
-
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -51,7 +49,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(autojump bgnotify chucknorris history-substring-search lol python screen zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(autojump bgnotify chucknorris history-substring-search lol python screen zsh-autosuggestions zsh-syntax-highlighting)
 
 # User configuration
 
@@ -97,7 +95,9 @@ AUTOSUGGESTION_ACCEPT_RIGHT_ARROW=1
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
+# ↳↘⇒⇢⇨⇰⇶⇾↠↣↦∅∈ ∟∫∮∴≃≣
+export PROMPT=$' ≣ $(last_exit_code) \
+'"$PROMPT"
 [ -f ~/.bash_aliases ] && . ~/.bash_aliases
 
 setopt NO_HUP
@@ -119,3 +119,16 @@ git_prompt_info () {
     echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}${stashed}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
 
+last_exit_code () {
+    local last=$?
+    if [[ $last = 0 ]]; then
+        echo "%{$fg[green]%}${last}%{$reset_color%}"
+    elif [[ $last -gt 128 ]]; then
+        local sign=$(( $last - 128 ))
+        local signame
+        signame=$(sed -rn 's/#define\s+SIG(.*)\s+'$sign'/\1/p' /usr/include/asm/signal.h 2>/dev/null)
+        echo "%{$fg[red]%}${last} ${sign}=${signame}%{$reset_color%}"
+    else
+        echo "%{$fg[magenta]%}${last}%{$reset_color%}"
+    fi
+}
