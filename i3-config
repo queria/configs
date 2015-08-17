@@ -154,6 +154,7 @@ for_window [title="QSRun"] floating enable, border none
 #for_window [class="Firefox"] move container to workspace 2, workspace 2
 for_window [class="Gvim"] floating enable
 for_window [class="explorer.exe" title="Emperor.exe"] floating enable, border none
+for_window [class="explorer.exe"] floating enable, border none
 for_window [class="winbox.exe"] floating enable
 for_window [class="Winff"] floating enable
 for_window [class="URxvt" title="calc"] floating enable, move absolute position 940px 535px
