@@ -33,6 +33,7 @@
     autocrlf = input
     attributesfile = ~/.gitattributes
     excludesfile = ~/.gitexcludes
+	pager = 
     #gitproxy = nc localhost 9418
 #/all/src/ngitcached/git-local-proxy
 
