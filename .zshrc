@@ -49,7 +49,8 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(autojump bgnotify chucknorris history-substring-search lol python screen zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(autojump bgnotify chucknorris lol python screen zsh-syntax-highlighting history-substring-search)
+# zsh-autosuggestions
 
 # User configuration
 
@@ -65,11 +66,11 @@ fortune -a $ZSH/plugins/chucknorris/fortunes
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 ###########
 
-zle-line-init() {
-    zle autosuggest-start
-}
-zle -N zle-line-init
-AUTOSUGGESTION_ACCEPT_RIGHT_ARROW=1
+#zle-line-init() {
+#    zle autosuggest-start
+#}
+#zle -N zle-line-init
+#AUTOSUGGESTION_ACCEPT_RIGHT_ARROW=1
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -102,6 +103,7 @@ export PROMPT=$' ≣ $(last_exit_code) \
 
 setopt NO_HUP
 setopt HISTIGNORESPACE
+unsetopt share_history
 
 [ -z "$ZSH_CDHOME" ] && export ZSH_CDHOME=1 && cd $HOME
 
@@ -126,7 +128,7 @@ last_exit_code () {
     elif [[ $last -gt 128 ]]; then
         local sign=$(( $last - 128 ))
         local signame
-        signame=$(sed -rn 's/#define\s+SIG(.*)\s+'$sign'/\1/p' /usr/include/asm/signal.h 2>/dev/null)
+        signame=$(sed -rn 's/#define\s+SIG(.*)\s+'$sign'/\1/p' /usr/include/asm/signal.h 2>/dev/null | head -n1)
         echo "%{$fg[red]%}${last} ${sign}=${signame}%{$reset_color%}"
     else
         echo "%{$fg[magenta]%}${last}%{$reset_color%}"
