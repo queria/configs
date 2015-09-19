@@ -8,6 +8,7 @@ export PATH
 
 export EDITOR=/usr/bin/vim
 export BC_ENV_ARGS="$HOME/.bc"
+export LESS="-FRX"
 
 export LIBVIRT_DEFAULT_URI=qemu:///system
 export GOPATH=$HOME/all/src/go
