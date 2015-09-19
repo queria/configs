@@ -67,7 +67,12 @@ mplast_helper () {
 }
 mplast () {
     local lastf="$(mplast_helper)"
-    local opts=("-idx")
+    typeset -a opts
+    if which mpv &> /dev/null; then
+        opts=("--index=recreate")
+    else
+        opts=("-idx")
+    fi
     local lastfreal="${lastf%.crdownload}"
     lastfreal="${lastfreal%.part}"
     local subs=""
