@@ -126,6 +126,7 @@ deploy_configs() {
     deplink i3-status "$HOME/.i3status.conf"
     mkdir -vp "$HOME/.config/dunst" || fin_message "mkdir .config/dunst" $EX_MKDIR
     deplink dunstrc "$HOME/.config/dunst/dunstrc"
+    deplink addic7ed "$HOME/.config/addic7ed"
 
     deplink "$HOME/.vim/qs_vimrc" "$HOME/.vimrc"
 }
