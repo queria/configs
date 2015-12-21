@@ -12,9 +12,8 @@ alias vv='view'
 
 export PAGER='less'
 #export PAGER='view'
-
-unalias ls
-unalias ll
+alias | grep -q '^\(alias \)\?ls=' && unalias ls
+alias | grep -q '^\(alias \)\?ll=' && unalias ll
 alias ls="ls --color=auto"
 alias cal='cal -m'
 
@@ -73,14 +72,21 @@ mplast () {
     else
         opts=("-idx")
     fi
-    local lastfreal="${lastf%.crdownload}"
-    lastfreal="${lastfreal%.part}"
+    local lastffinal="${lastf%.crdownload}"
+    lastffinal="${lastffinal%.part}"
     local subs=""
     if [[ "x$1" == "x-s" ]]; then
         shift
-        local base="${lastfreal%.*}"  # strip suffix
+        local base="${lastffinal%.*}"  # strip suffix
+
         subs="${base}.srt"
-        [[ -e "${subs}" ]] || addic7ed "$lastf"
+
+        # workaround for ".US." being stuffed in regular file names (Forever.sris)
+        subsfor="$(sed "s/\.US\./\./" <<< "$lastf")"
+        subs="$(sed "s/\.US\./\./" <<< "$subs")"
+        # otherwise the subsfor == lastf
+
+        [[ -e "${subs}" ]] || addic7ed "$subsfor"
         [[ -e "${subs}" ]] && opts=("${opts[@]}" "-sub" "${subs}")
     fi
 
@@ -90,9 +96,9 @@ mplast () {
     echo "Last was: ${lastf}";
     echo "playable like:";
     if [[ -z "${subs}" ]]; then
-        echo " mplayer \"${lastfreal}\"";
+        echo " mplayer \"${lastffinal}\"";
     else
-        echo " mplayer -sub \"${subs}\" \"${lastfreal}\"";
+        echo " mplayer -sub \"${subs}\" \"${lastffinal}\"";
     fi
 }
 mplasts () {
