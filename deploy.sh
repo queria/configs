@@ -35,6 +35,9 @@ fin_message() {
         exit $2
     fi
 }
+safemkdir() {
+    mkdir -vp "$1" || fin_message "mkdir $1" $EX_MKDIR
+}
 bup() {
     BUP_USED=true
     mv -v "$1" "${BUPD}/${1//\//_}"
@@ -114,19 +117,24 @@ deploy_configs() {
     deplink .zshrc "$HOME/.zshrc"
     deplink .zshenv "$HOME/.zshenv"
     deplink .zlogout "$HOME/.zlogout"
-    mkdir -vp "$HOME/.config/fish" || fin_message "mkdir .config/fish" $EX_MKDIR
+    safemkdir "$HOME/.config/fish"
     deplink config.fish "$HOME/.config/fish/config.fish"
 
     deplink .gitattributes "$HOME/.gitattributes"
     deplink .gitconfig "$HOME/.gitconfig"
     deplink .Xdefaults "$HOME/.Xdefaults"
 
-    mkdir -vp "$HOME/.i3" || fin_message "mkdir .i3" $EX_MKDIR
+    safemkdir "$HOME/.i3"
     deplink i3-config "$HOME/.i3/config"
     deplink i3-status "$HOME/.i3status.conf"
-    mkdir -vp "$HOME/.config/dunst" || fin_message "mkdir .config/dunst" $EX_MKDIR
+    safemkdir "$HOME/.config/dunst"
     deplink dunstrc "$HOME/.config/dunst/dunstrc"
     deplink addic7ed "$HOME/.config/addic7ed"
+
+    safemkdir "$HOME/.mplayer"
+    deplink mplayer "$HOME/.mplayer/config"
+    safemkdir "$HOME/.mpv"
+    deplink mpv "$HOME/.mpv/config"
 
     deplink "$HOME/.vim/qs_vimrc" "$HOME/.vimrc"
 }
