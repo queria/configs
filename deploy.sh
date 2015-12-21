@@ -7,6 +7,10 @@ CHANGED=false
 EX_CLONE=11
 EX_MKDIR=12
 
+CLR_ERROR="\033[1;31m"
+CLR_ALREADY="\033[0;32m"
+CLR_NONE="\033[00m"
+
 safetycheck() {
     if [[ "$1" != "--force" && "$HOME" != "$(echo ~)" ]]; then
         echo "$$HOME[=$HOME] does not seem to match ~[=$(echo ~)] ... operation could be unsafe!"
@@ -16,10 +20,10 @@ safetycheck() {
 }
 fin_message() {
     if [[ ! -z "$1" ]]; then
-        echo -e "\033[1;31m** FAILED: $1 **\033[00m"
+        echo -e "${CLR_ERROR}** FAILED: $1 **${CLR_NONE}"
     elif ! $CHANGED; then
         echo ""
-        echo -e "\033[0;36mSeems all configs are already deployed here.\033[00m"
+        echo -e "${CLR_ALREADY}Seems all configs are already deployed here.${CLR_NONE}"
         echo ""
     fi
     if $BUP_USED; then
@@ -60,7 +64,7 @@ deplink() {
         if [[ -L "$tgt" ]]; then
             src_tgt="$(readlink -f "$tgt")"
             if [[ "$src" = "$src_tgt" ]]; then
-                echo -e "\033[1;30m‘$tgt’ -> ‘$src’ [already]\033[00m";
+                echo -e "${CLR_ALREADY}‘$tgt’ -> ‘$src’ [already]${CLR_NONE}";
                 # link already matches
                 return
             fi
@@ -94,7 +98,7 @@ deprepo() {
             popd > /dev/null
         fi
     else
-        echo -e "\033[1;30m‘$tgt’ -> ‘$repo’ [already]\033[00m";
+        echo -e "${CLR_ALREADY}‘$tgt’ -> ‘$repo’ [already]${CLR_NONE}";
     fi
 }
 deploy_repos() {
