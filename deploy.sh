@@ -69,7 +69,12 @@ deplink() {
                 return
             fi
         fi
-        bup "$tgt"
+        if diff "$src" "$tgt" &> /dev/null; then
+            echo "Replacing $tgt with symlink [same content]"
+            rm "$tgt"
+        else
+            bup "$tgt"
+        fi
     fi
     CHANGED=true
     if [[ ! -e "$tgt" ]]; then
