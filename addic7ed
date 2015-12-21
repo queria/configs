@@ -1,6 +1,7 @@
 [flags]
 hearing-impaired = no
 brute-batch
+verbose
 
 [languages]
 english
