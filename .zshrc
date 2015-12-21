@@ -108,9 +108,11 @@ unsetopt share_history
 [ -z "$ZSH_CDHOME" ] && export ZSH_CDHOME=1 && cd $HOME
 
 bgnotify_formatted () {
-    [ $1 -eq 0 ] && title="#success (took $3 s)"  || title="#fail (took $3 s)"
-    notify-send -a zsh "$title" "$2"
-    #bgnotify "$title" "$2"
+    if [ $1 -eq 0 ]; then
+        notify-send -a zsh -u low "#success (took $3 s)" "$2"
+    else
+        notify-send -a zsh -u normal "#fail (took $3 s)" "$2"
+    fi
 }
 git_prompt_info () {
     local ref

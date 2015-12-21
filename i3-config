@@ -162,6 +162,7 @@ for_window [class="URxvt" title="ipython"] floating enable, move absolute positi
 for_window [class="URxvt" title="^temp$"] floating enable, move absolute position 940px 535px
 for_window [title="Planet Explorers"] floating enable
 for_window [title="^Event Tester$"] floating enable
+for_window [title="^God_is_a_Cube-Age_of_DNA$"] floating enable
 #geometry { "x": 948, "y": 559 }
 
 assign [class="Firefox"] 2

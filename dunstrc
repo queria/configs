@@ -215,9 +215,19 @@
 #    summary = *twitter.com*
 #    urgency = normal
 #
-[zsh]
+[zsh-ok]
      appname=zsh
+     summary = *success*
      urgency = low
      foreground = "#aaaaaa"
      timeout = 4
+
+[zsh-fail]
+     appname=zsh
+     summary = *fail*
+     urgency = normal
+     foreground = "#eeeeee"
+     background = "#dd0000"
+     timeout = 6
+
 
