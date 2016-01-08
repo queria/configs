@@ -24,6 +24,7 @@ lls () { ll "$@" | less; }
 lg () { ( ( [ -z "$2" ] && ll ) || ll "$2" ) | grep -i "$1"; }
 lt () { ll -tr "$@"; }
 lll () { ll -tr "$@"|tail; }
+llS () { ll -Sr "$@"|tail; }
 psg () { ps -ef | grep -v 'grep' | grep -i "$@"; }
 scrr () { screen -d -R $@; }
 tmx () { tmux has &>/dev/null && tmux attach -d -t 0 || tmux ; }
@@ -95,11 +96,13 @@ mplast () {
     set +x;
     echo "Last was: ${lastf}";
     echo "playable like:";
+    echo "";
     if [[ -z "${subs}" ]]; then
-        echo " mplayer \"${lastffinal}\"";
+        echo "mplayer \"${lastffinal}\"";
     else
-        echo " mplayer -sub \"${subs}\" \"${lastffinal}\"";
+        echo "mplayer -sub \"${subs}\" \"${lastffinal}\"";
     fi
+    echo "";
 }
 mplasts () {
     mplast -s "$@"
@@ -170,10 +173,10 @@ rstview () {
 
 con () {
     if [[ -z "$1" ]]; then
-        nmcli c show active;
+        nmcli c show --active;
         iwlist wlan0 scan|grep -i ssid;
     else
-        if nmcli c show active | grep -q "^$1 "; then
+        if nmcli c show --active | grep -q "^$1 "; then
             nmcli c down id "$1";
             sleep 0.5;
         fi
