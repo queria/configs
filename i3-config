@@ -157,8 +157,8 @@ for_window [class="explorer.exe" title="Emperor.exe"] floating enable, border no
 for_window [class="explorer.exe"] floating enable, border none
 for_window [class="winbox.exe"] floating enable
 for_window [class="Winff"] floating enable
-for_window [class="URxvt" title="calc"] floating enable, move absolute position 940px 535px
-for_window [class="URxvt" title="ipython"] floating enable, move absolute position 940px 535px
+for_window [class="URxvt" title="^calc$"] floating enable, move absolute position 940px 535px
+for_window [class="URxvt" title="^minipython$"] floating enable, move absolute position 940px 535px
 for_window [class="URxvt" title="^temp$"] floating enable, move absolute position 940px 535px
 for_window [title="Planet Explorers"] floating enable
 for_window [title="^Event Tester$"] floating enable
@@ -222,7 +222,8 @@ bindsym $mod+g exec /usr/bin/gvim
 bindsym $mod+h exec --no-startup-id $scripts/headphones on
 bindsym $mod+Shift+h exec --no-startup-id $scripts/headphones off
 bindsym $mod+c exec --no-startup-id /usr/bin/urxvtc -title calc -e /usr/bin/bc
-bindsym $mod+p exec --no-startup-id /usr/bin/urxvtc -title ipython -e /usr/bin/ipython
+bindsym $mod+p exec --no-startup-id /usr/bin/urxvtc -title minipython -e /usr/bin/ipython
+bindsym $mod+Shift+p exec --no-startup-id /usr/bin/urxvtc -e /usr/bin/ipython
 bindsym $mod+k exec ksnapshot
 
 bindsym $mod+Mod1+s exec --no-startup-id $scripts/qxdo space
