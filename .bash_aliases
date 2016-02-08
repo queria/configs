@@ -59,6 +59,15 @@ alias mpc-ntb="mpc enable 1 && mpc disable 2"
 
 alias mplayer=mpv
 mp () { mplayer "$@"; }
+mpm () {
+    ARGS=("$@");
+    if [[ "${#ARGS[@]}" = "0" ]]; then
+        local AUTOPICKED="$(find /all/music/ -maxdepth 1 -type d|grep -v '^/all/music/$'|grep -v 'FLAC' | sort -R|head -n1)";
+        echo "Auto-picked $AUTOPICKED"
+        ARGS=("${ARGS[@]}" "$AUTOPICKED");
+    fi;
+    mpv -vo=null --shuffle "${ARGS[@]}";
+}
 mps () { addic7ed "$1"; mp "$@"; }
 mpp () { mplayer -demuxer lavf "$@"; }
 mpns () { mplayer -af volume=-200 "$@"; }
