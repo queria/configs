@@ -7,9 +7,11 @@ fi
 
 cd $HOME
 
-if [[ -e "$HOME/all" && ! -e "$HOME/all/tmp" ]]; then 
+if [[ ! -d /tmp/ps_tmp ]]; then
     mkdir /tmp/ps_tmp;
-    ln -snf /tmp/ps_tmp "$HOME/all/tmp"
+fi
+if [[ -e "$HOME/all" && ! -e "$HOME/all/tmp" ]]; then
+    ln -snf /tmp/ps_tmp/ "$HOME/all/tmp"
 fi
 
 # User specific aliases and functions
