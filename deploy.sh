@@ -139,6 +139,8 @@ deploy_configs() {
     safemkdir "$HOME/.config/dunst"
     deplink dunstrc "$HOME/.config/dunst/dunstrc"
     deplink addic7ed "$HOME/.config/addic7ed"
+    safemkdir "$HOME/.config/openbox"
+    deplink openbox.rc.xml "$HOME/.config/openbox/rc.xml"
 
     safemkdir "$HOME/.mplayer"
     deplink mplayer "$HOME/.mplayer/config"
