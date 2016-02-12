@@ -252,7 +252,10 @@ scpvm() {
         -o User=root "$@" ;
 }
 sshvnc() {
-    ssh -t -L 5901:localhost:5900 $1 'x11vnc -nopw -ncache 10 -localhost -display :0';
+    if ssh -f -t -L 5901:localhost:5900 $1 'x11vnc -nopw -ncache 10 -localhost -display :0'; then
+        sleep 0.3;
+        vncviewer localhost:5901;
+    fi
 }
 
 git-personal() {
