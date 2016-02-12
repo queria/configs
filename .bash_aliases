@@ -251,6 +251,9 @@ scpvm() {
         -o UserKnownHostsFile=/dev/null \
         -o User=root "$@" ;
 }
+sshvnc() {
+    ssh -t -L 5901:localhost:5900 $1 'x11vnc -nopw -ncache 10 -localhost -display :0';
+}
 
 git-personal() {
     git status &> /dev/null || return;
