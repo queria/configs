@@ -131,6 +131,7 @@ deploy_configs() {
 
     deplink .gitattributes "$HOME/.gitattributes"
     deplink .gitconfig "$HOME/.gitconfig"
+    deplink .gitexcludes "$HOME/.gitexcludes"
     deplink .Xdefaults "$HOME/.Xdefaults"
 
     safemkdir "$HOME/.i3"

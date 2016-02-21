@@ -1,0 +1,5 @@
+qs-workspace/*
+.idea
+jobs/psedlak-config.ini
+settings/provisioner/openstack/site/qeos/tenant/psedlak.yml
+settings/provisioner/openstack/site/qeos/user/psedlak.yml
