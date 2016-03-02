@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [[ -d "$1" ]]; then
+    pushd "$1" > /dev/null
+    git status &> /dev/null
+    rc="$?"
+    popd > /dev/null
+    if [[ "$rc" = "128" ]]; then
+        bup "$1"
+    fi
+fi

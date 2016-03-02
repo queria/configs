@@ -1,0 +1,28 @@
+#!/bin/bash
+
+src="$(readlink -f $1)"
+tgt="$2"
+
+if [[ -f "$tgt" ]]; then
+    if [[ -L "$tgt" ]]; then
+        src_tgt="$(readlink -f "$tgt")"
+        if [[ "$src" = "$src_tgt" ]]; then
+            echo -e "${CLR_ALREADY}‘$tgt’ -> ‘$src’ [already]${CLR_NONE}";
+            # link already matches
+            exit
+        fi
+    fi
+    if diff "$src" "$tgt" &> /dev/null; then
+        echo "Replacing $tgt with symlink [same content]"
+        rm "$tgt"
+    else
+        bup "$tgt"
+    fi
+fi
+
+touch "$CHANGED"
+if [[ ! -e "$tgt" ]]; then
+    ln -vsnf "$src" "$tgt"
+else
+    echo "Unable to deploy ${src} as ${tgt} (not a file...), please inspect and fix."
+fi

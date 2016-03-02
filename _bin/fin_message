@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [[ ! -z "$1" ]]; then
+    echo -e "${CLR_ERROR}** FAILED: $1 **${CLR_NONE}"
+elif [[ ! -f "$CHANGED" ]]; then
+    echo ""
+    echo -e "${CLR_ALREADY}Seems all configs are already deployed here.${CLR_NONE}"
+    echo ""
+fi
+if [[ -f "$BUP_USED" ]]; then
+    echo ""
+    echo "All original files were moved to"
+    echo "$BUPD"
+    echo "You can inspect it, opt. merge with deployed configs,"
+    echo "and delete the directory"
+else
+    rm -f "$CHANGED" &> /dev/null
+    rm -f "$BUP_USED" &> /dev/null
+    rmdir "$BUPD"
+fi

@@ -1,0 +1,3 @@
+#!/bin/bash
+touch "$BUP_USED"
+mv -v "$1" "${BUPD}/${1//\//_}"
