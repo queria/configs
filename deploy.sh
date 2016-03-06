@@ -108,6 +108,7 @@ check_app_presence() {
 	bin_check vim
 	bin_check gvim
 	bin_check htop
+    bin_check ncdu
 	bin_check screen
 	bin_check strace
     bin_check zsh
