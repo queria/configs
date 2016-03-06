@@ -329,6 +329,21 @@
         <command>auto-move-w run</command>
       </action>
     </keybind>
+    <keybind key="W-A-c">
+      <action name="Execute">
+        <command>qxdo</command>
+      </action>
+    </keybind>
+    <keybind key="W-A-x">
+      <action name="Execute">
+        <command>qxdo stop</command>
+      </action>
+    </keybind>
+    <keybind key="W-A-y">
+      <action name="Execute">
+        <command>bash -c 'pkill qxdo; pkill xdotool'</command>
+      </action>
+    </keybind>
   </keyboard>
   <mouse>
     <dragThreshold>1</dragThreshold>
