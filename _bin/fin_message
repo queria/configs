@@ -1,20 +1,28 @@
 #!/bin/bash
 
+echo ""
 if [[ ! -z "$1" ]]; then
     echo -e "${CLR_ERROR}** FAILED: $1 **${CLR_NONE}"
-elif [[ ! -f "$CHANGED" ]]; then
-    echo ""
-    echo -e "${CLR_ALREADY}Seems all configs are already deployed here.${CLR_NONE}"
-    echo ""
+else
+    if [[ ! -f "${MISSING_CMD}" ]]; then
+        echo -e "${CLR_ALREADY}All commands/utils are present.${CLR_NONE}"
+    fi
+    if [[ ! -f "$CHANGED" ]]; then
+        echo -e "${CLR_ALREADY}All configs are already deployed here.${CLR_NONE}"
+    fi
 fi
+echo ""
+
+
+
 if [[ -f "$BUP_USED" ]]; then
+    rm -f "$BUP_USED" "$CHANGED" "$MISSING_CMD"
     echo ""
     echo "All original files were moved to"
     echo "$BUPD"
     echo "You can inspect it, opt. merge with deployed configs,"
     echo "and delete the directory"
 else
-    rm -f "$CHANGED" &> /dev/null
-    rm -f "$BUP_USED" &> /dev/null
+    rm -f "$BUP_USED" "$CHANGED" "$MISSING_CMD"
     rmdir "$BUPD"
 fi

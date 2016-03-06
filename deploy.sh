@@ -3,6 +3,7 @@
 export BUPD=$(mktemp -d --tmpdir "config-backup-XXXXXX")
 export BUP_USED="${BUPD}/__bup_used"
 export CHANGED="${BUPD}/__changed"
+export MISSING_CMD="${BUPD}/__missing_cmd"
 
 export EX_CLONE=11
 export EX_MKDIR=12
@@ -49,6 +50,13 @@ sudo_deprepo() {
 sudo_deplink() {
     sudo -E "$MYBIN/deplink" "$@"
 }
+cmd_check() {
+    if ! eval $1 &> /dev/null; then
+        touch "$MISSING_CMD"
+        echo "Missing $2. $3";
+    fi
+}
+bin_check() { cmd_check "which $1" "command $1" "$2"; }
 
 deploy_repos() {
     if [[ ! -d "$HOME/all/src" ]]; then
@@ -96,6 +104,21 @@ deploy_configs() {
 
     sudo_deplink vok "/usr/share/X11/xkb/symbols/vok"
 }
+check_app_presence() {
+	bin_check vim
+	bin_check gvim
+	bin_check htop
+	bin_check screen
+	bin_check strace
+    bin_check zsh
+    bin_check autojump
+    bin_check fortune
+    bin_check enca
+    bin_check vncviewer
+    bin_check flake8 "python{,3}-flake8"
+    cmd_check 'python -c "import jedi"' "python{,3}-jedi"
+    cmd_check '[[ "$SHELL" =~ .*zsh ]]' "zsh as user shell"
+}
 
 
 safetycheck "$1"
@@ -103,5 +126,7 @@ safetycheck "$1"
 cd "$(dirname $0)"
 deploy_repos
 deploy_configs
+
+check_app_presence
 
 fin_message
