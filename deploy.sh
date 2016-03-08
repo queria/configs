@@ -116,6 +116,7 @@ check_app_presence() {
     bin_check fortune
     bin_check enca
     bin_check vncviewer
+    bin_check osd_cat
     bin_check flake8 "python{,3}-flake8"
     cmd_check 'python -c "import jedi"' "python{,3}-jedi"
     cmd_check '[[ "$SHELL" =~ .*zsh ]]' "zsh as user shell"

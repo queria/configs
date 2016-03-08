@@ -212,6 +212,14 @@ bindsym $mod+XF86Forward workspace next
 bindsym XF86Back focus left
 bindsym XF86Forward focus right
 
+bindsym Shift+Left focus left
+bindsym Shift+Right focus right
+bindsym KP_Left focus left
+bindsym KP_Right focus left
+bindsym KP_Begin workspace next
+bindsym KP_Up workspace next
+bindsym KP_Down workspace prev
+
 # apps
 bindsym $mod+n exec --no-startup-id $HOME/all/src/nmcli-dmenu/nmcli_dmenu
 bindsym Mod1+F2 exec --no-startup-id /usr/local/bin/dmenu_hist
