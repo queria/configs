@@ -21,7 +21,7 @@
     logm = log --no-merges
     lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
     ll = log --oneline
-    lns = log --name-status
+    ls = log --name-status
     puf = pull --ff-only
     up = pull up master
     amend = commit --amend
