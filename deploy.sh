@@ -102,6 +102,9 @@ deploy_configs() {
 
     deplink "$HOME/.vim/qs_vimrc" "$HOME/.vimrc"
 
+    safemkdir "$HOME/bin"
+    deplink "/usr/bin/openstack" "$HOME/bin/os"
+
     sudo_deplink vok "/usr/share/X11/xkb/symbols/vok"
 }
 check_app_presence() {
@@ -118,6 +121,7 @@ check_app_presence() {
     bin_check vncviewer
     bin_check osd_cat
     bin_check flake8 "python{,3}-flake8"
+    bin_check openstack "python-openstackclient"
     cmd_check 'python -c "import jedi"' "python{,3}-jedi"
     cmd_check '[[ "$SHELL" =~ .*zsh ]]' "zsh as user shell"
 }
