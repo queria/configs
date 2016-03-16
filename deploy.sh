@@ -118,6 +118,7 @@ check_app_presence() {
     bin_check autojump
     bin_check fortune
     bin_check enca
+    bin_check elinks
     bin_check vncviewer
     bin_check osd_cat
     bin_check flake8 "python{,3}-flake8"
