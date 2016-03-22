@@ -172,8 +172,8 @@ assign [class="Firefox"] 2
 #assign [class="^URxvt$" instance="^RootShell$"] 4
 
 # laptop control
-bindsym XF86MonBrightnessDown exec --no-startup-id /usr/bin/xbacklight -dec 20 -time 100
-bindsym XF86MonBrightnessUp exec --no-startup-id /usr/bin/xbacklight -inc 20 -time 100
+bindsym XF86MonBrightnessDown exec --no-startup-id /usr/bin/xbacklight -dec 3 -time 100
+bindsym XF86MonBrightnessUp exec --no-startup-id /usr/bin/xbacklight -inc 3 -time 100
 bindsym XF86AudioRaiseVolume exec --no-startup-id $scripts/xosd-volume up
 bindsym XF86AudioLowerVolume exec --no-startup-id $scripts/xosd-volume down
 bindsym XF86AudioMute exec --no-startup-id $scripts/xosd-volume toggle
