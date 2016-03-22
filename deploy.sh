@@ -118,6 +118,7 @@ check_app_presence() {
     bin_check autojump
     bin_check fortune
     bin_check enca
+    bin_check ctags
     bin_check elinks
     bin_check vncviewer
     bin_check osd_cat
