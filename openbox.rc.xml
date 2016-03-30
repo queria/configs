@@ -261,6 +261,10 @@
     </keybind>
     <keybind key="W-Right">
       <action name="NextWindow">
+        <dialog>none</dialog>
+        <bar>no</bar>
+        <linear>yes</linear>
+        <interactive>no</interactive>
         <finalactions>
           <action name="Focus"/>
           <action name="Raise"/>
@@ -270,6 +274,10 @@
     </keybind>
     <keybind key="W-Left">
       <action name="PreviousWindow">
+        <dialog>none</dialog>
+        <bar>no</bar>
+        <linear>yes</linear>
+        <interactive>no</interactive>
         <finalactions>
           <action name="Focus"/>
           <action name="Raise"/>
