@@ -225,23 +225,12 @@ yum-switch() {
 
 alias gg='git grep'
 
-sshvirt () {
-    while ! ping -w 1 -c 1 virt &>/dev/null; do
-        echo -n .
-        sleep 1
-    done
-    if ssh virt 'exit'; then
-        clear
-        ssh virt
-    else
-        echo "host up, incoming ssh"
-        for N in $(seq 10 -1 0); do
-            echo -ne "\r$N  "
-            sleep 0.5
-        done
-        clear
-        ssh virt
-    fi;
+ssj () {
+    ssh -i ~/.ssh/rhos-jenkins \
+        -o PreferredAuthentications=publickey,password \
+        -o StrictHostKeyChecking=no \
+        -o UserKnownHostsFile=/dev/null \
+        "$@";
 }
 
 scpvm() {
