@@ -237,7 +237,6 @@ bindsym $mod+Shift+h exec --no-startup-id $scripts/headphones off
 bindsym $mod+c exec --no-startup-id /usr/bin/urxvtc -title calc -e /usr/bin/bc
 bindsym $mod+p exec --no-startup-id /usr/bin/urxvtc -title minipython -e /usr/bin/ipython
 bindsym $mod+Shift+p exec --no-startup-id /usr/bin/urxvtc -e /usr/bin/ipython
-bindsym $mod+k exec ksnapshot
 
 bindsym $mod+Mod1+s exec --no-startup-id $scripts/qxdo space
 bindsym $mod+Mod1+c exec --no-startup-id $scripts/qxdo
