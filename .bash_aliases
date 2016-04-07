@@ -7,6 +7,7 @@ export GREP_COLOR=31
 alias grep='grep --color=auto'
 alias less='less -r'
 alias more='less'
+alias vim='vimx'
 alias v='vim'
 alias vv='view'
 
