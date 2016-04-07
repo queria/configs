@@ -191,9 +191,7 @@ bindsym $mod+t exec --no-startup-id $scripts/scrr2urxvt
 ### SESSION
 # lock
 bindsym $mod+e exec --no-startup-id $scripts/qslock
-bindsym $mod+Mod1+e exec --no-startup-id $scripts/qslock noirc
-# new session
-bindsym $mod+l exec --no-startup-id "sh -c 'qslock && kdmctl reserve'"
+bindsym $mod+l exec --no-startup-id $scripts/qslock noirc
 # suspend+lock
 bindsym $mod+Shift+e exec --no-startup-id "sh -c 'qslock && sleep 0.5 && sudo /usr/sbin/pm-suspend'"
 # exit i3 (logs you out of your X session)
