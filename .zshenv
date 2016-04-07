@@ -7,6 +7,7 @@ export PATH
 [[ -z "$MANPATH" ]] && export MANPATH="$HOME/all/docs/man:$(manpath)"
 
 export EDITOR=/usr/bin/vim
+export TERMINAL=xterm
 export BC_ENV_ARGS="$HOME/.bc"
 export LESS="-FRX"
 

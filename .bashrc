@@ -16,6 +16,7 @@ fi
 
 # User specific aliases and functions
 export EDITOR=/usr/bin/vim
+export TERMINAL=xterm
 export BC_ENV_ARGS="$HOME/.bc"
 
 #PATH="$HOME/all/src/go/bin:$PATH"
