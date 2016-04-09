@@ -1,3 +1,4 @@
 #!/bin/bash
 touch "$BUP_USED"
-mv -v "$1" "${BUPD}/${1//\//_}"
+$SUDO mv -v "$1" "${BUPD}/${1//\//_}"
+[[ ! -z "$SUDO" ]] && $SUDO chown "$USER" "${BUPD}/${1//\//_}"

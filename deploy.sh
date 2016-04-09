@@ -41,14 +41,8 @@ deprepo() {
 deplink() {
     "$MYBIN/deplink" "$@"
 }
-sudo_deprepo() {
-    if ! sudo -E "$MYBIN/deprepo" "$@"; then
-        fin_message "Cloning $repo into $tgt"
-        exit $EX_CLONE
-    fi
-}
 sudo_deplink() {
-    sudo -E "$MYBIN/deplink" "$@"
+    SUDO="sudo -E" "$MYBIN/deplink" "$@"
 }
 cmd_check() {
     if ! eval $1 &> /dev/null; then

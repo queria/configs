@@ -14,7 +14,7 @@ if [[ -f "$tgt" ]]; then
     fi
     if diff "$src" "$tgt" &> /dev/null; then
         echo "Replacing $tgt with symlink [same content]"
-        rm "$tgt"
+        $SUDO rm "$tgt"
     else
         bup "$tgt"
     fi
@@ -22,7 +22,7 @@ fi
 
 touch "$CHANGED"
 if [[ ! -e "$tgt" ]]; then
-    ln -vsnf "$src" "$tgt"
+    $SUDO ln -vsnf "$src" "$tgt"
 else
     echo "Unable to deploy ${src} as ${tgt} (not a file...), please inspect and fix."
 fi
