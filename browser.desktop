@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=/home/queria/all/src/scripts/browser
+MimeType=text/html;
+Name=browser
+NoDisplay=true
+Type=Application

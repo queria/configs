@@ -81,6 +81,12 @@ deploy_configs() {
     safemkdir "$HOME/.config/fish"
     deplink config.fish "$HOME/.config/fish/config.fish"
 
+    safemkdir "$HOME/.config"
+    safemkdir "$HOME/.local/share/applications"
+    deplink mimeapps.list "$HOME/.config/mimeapps.list"
+    deplink mimeapps.list "$HOME/.local/share/applications/mimeapps.list"
+    deplink browser.desktop "$HOME/.local/share/applications/browser.desktop"
+
     deplink .gitattributes "$HOME/.gitattributes"
     deplink .gitconfig "$HOME/.gitconfig"
     deplink .gitexcludes "$HOME/.gitexcludes"
@@ -122,6 +128,7 @@ check_app_presence() {
     bin_check elinks
     bin_check vncviewer
     bin_check osd_cat
+    bin_check dolphin
     bin_check flake8 "python{,3}-flake8"
     bin_check openstack "python-openstackclient"
     cmd_check 'python -c "import jedi"' "python{,3}-jedi"
