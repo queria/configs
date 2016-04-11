@@ -1,0 +1,235 @@
+# Content:
+#  - basic helpers from bash_completion
+#  - advanced helpers from bash_completion, to support openstack unified client
+#  - activation of the completion in zsh
+#
+# Note: for zsh, all forms of ${!varname} were replaced with ${(P)varname}
+#       as both bash and zsh have different syntax for it
+#       (referencing variable by using its name from value of another variable)
+#
+# Note2: some of the bash_completion.d scripts may not be compatible with zsh
+#        (and bashcompinit does not deal with them. for who knows?)
+#        so put their zsh-compatible copies in ~/.zsh_bashcomp.d/
+
+_have()
+{
+    # Completions for system administrator commands are installed as well in
+    # case completion is attempted via `sudo command ...'.
+    PATH=$PATH:/usr/sbin:/sbin:/usr/local/sbin type $1 &>/dev/null
+}
+
+# Backwards compatibility for compat completions that use have().
+# @deprecated should no longer be used; generally not needed with dynamically
+#             loaded completions, and _have is suitable for runtime use.
+have()
+{
+    unset -v have
+    _have $1 && have=yes
+}
+
+
+
+
+## -- following is needed for using python-openstackclient bash completion
+
+# Get the word to complete and optional previous words.
+# This is nicer than ${COMP_WORDS[$COMP_CWORD]}, since it handles cases
+# where the user is completing in the middle of a word.
+# (For example, if the line is "ls foobar",
+# and the cursor is here -------->   ^
+# Also one is able to cross over possible wordbreak characters.
+# Usage: _get_comp_words_by_ref [OPTIONS] [VARNAMES]
+# Available VARNAMES:
+#     cur         Return cur via $cur
+#     prev        Return prev via $prev
+#     words       Return words via $words
+#     cword       Return cword via $cword
+#
+# Available OPTIONS:
+#     -n EXCLUDE  Characters out of $COMP_WORDBREAKS which should NOT be
+#                 considered word breaks. This is useful for things like scp
+#                 where we want to return host:path and not only path, so we
+#                 would pass the colon (:) as -n option in this case.
+#     -c VARNAME  Return cur via $VARNAME
+#     -p VARNAME  Return prev via $VARNAME
+#     -w VARNAME  Return words via $VARNAME
+#     -i VARNAME  Return cword via $VARNAME
+#
+# Example usage:
+#
+#    $ _get_comp_words_by_ref -n : cur prev
+#
+_get_comp_words_by_ref()
+{
+    local exclude flag i OPTIND
+    local cur cword words=()
+    local upargs=() upvars=() vcur vcword vprev vwords
+
+
+    while getopts "c:i:n:p:w:" flag "$@"; do
+        case $flag in
+            c) vcur=$OPTARG ;;
+            i) vcword=$OPTARG ;;
+            n) exclude=$OPTARG ;;
+            p) vprev=$OPTARG ;;
+            w) vwords=$OPTARG ;;
+        esac
+    done
+    #OPTIND=1
+    #echo "_$#_>_${OPTIND}_" >> /tmp/x2
+    #echo "__${OPTIND}_=>_${(P)OPTIND}__" >> /tmp/x2
+    while [[ $# -ge $OPTIND ]]; do
+        case ${(P)OPTIND} in
+            cur)   vcur=cur ;;
+            prev)  vprev=prev ;;
+            cword) vcword=cword ;;
+            words) vwords=words ;;
+            *) echo "bash: $FUNCNAME(): \`${(P)OPTIND}': unknown argument" \
+                1>&2; return 1
+        esac
+        let "OPTIND += 1"
+    done
+
+    __get_cword_at_cursor_by_ref "$exclude" words cword cur
+
+    [[ $vcur   ]] && { upvars+=("$vcur"  ); upargs+=(-v $vcur   "$cur"  ); }
+    [[ $vcword ]] && { upvars+=("$vcword"); upargs+=(-v $vcword "$cword"); }
+    [[ $vprev && $cword -ge 1 ]] && { upvars+=("$vprev" ); upargs+=(-v $vprev
+        "${words[cword - 1]}"); }
+    [[ $vwords ]] && { upvars+=("$vwords"); upargs+=(-a${#words[@]} $vwords
+        "${words[@]}"); }
+
+    (( ${#upvars[@]} )) && local "${upvars[@]}" && _upvars "${upargs[@]}"
+}
+
+### --- end of bash_completion snippet
+# @param $1 exclude  Characters out of $COMP_WORDBREAKS which should NOT be
+#     considered word breaks. This is useful for things like scp where
+#     we want to return host:path and not only path, so we would pass the
+#     colon (:) as $1 in this case.
+# @param $2 words  Name of variable to return words to
+# @param $3 cword  Name of variable to return cword to
+# @param $4 cur  Name of variable to return current word to complete to
+# @see __reassemble_comp_words_by_ref()
+__get_cword_at_cursor_by_ref()
+{
+    local cword words=()
+    __reassemble_comp_words_by_ref "$1" words cword
+
+    local i cur index=$COMP_POINT lead=${COMP_LINE:0:$COMP_POINT}
+    # Cursor not at position 0 and not leaded by just space(s)?
+    if [[ $index -gt 0 && ( $lead && ${lead//[[:space:]]} ) ]]; then
+        cur=$COMP_LINE
+        for (( i = 0; i <= cword; ++i )); do
+            while [[ ${#cur} -ge ${#words[i]} && "${cur:0:${#words[i]}}" != "${words[i]}" ]]; do
+                # Strip first character
+                cur="${cur:1}"
+                # Decrease cursor position
+                ((index--))
+            done
+
+            # Does found word match cword?
+            if [[ $i -lt $cword ]]; then
+                # No, cword lies further;
+                local old_size=${#cur}
+                cur="${cur#"${words[i]}"}"
+                local new_size=${#cur}
+                index=$(( index - old_size + new_size ))
+            fi
+        done
+        # Clear $cur if just space(s)
+        [[ $cur && ! ${cur//[[:space:]]} ]] && cur=
+        # Zero $index if negative
+        [[ $index -lt 0 ]] && index=0
+    fi
+
+    local "$2" "$3" "$4" && _upvars -a${#words[@]} $2 "${words[@]}" \
+        -v $3 "$cword" -v $4 "${cur:0:$index}"
+}
+
+# Reassemble command line words, excluding specified characters from the
+# list of word completion separators (COMP_WORDBREAKS).
+# @param $1 chars  Characters out of $COMP_WORDBREAKS which should
+#     NOT be considered word breaks. This is useful for things like scp where
+#     we want to return host:path and not only path, so we would pass the
+#     colon (:) as $1 here.
+# @param $2 words  Name of variable to return words to
+# @param $3 cword  Name of variable to return cword to
+#
+__reassemble_comp_words_by_ref()
+{
+    local exclude i j line ref
+    # Exclude word separator characters?
+    if [[ $1 ]]; then
+        # Yes, exclude word separator characters;
+        # Exclude only those characters, which were really included
+        exclude="${1//[^$COMP_WORDBREAKS]}"
+    fi
+
+    # Default to cword unchanged
+    printf -v "$3" %s "$COMP_CWORD"
+    # Are characters excluded which were former included?
+    if [[ $exclude ]]; then
+        # Yes, list of word completion separators has shrunk;
+        line=$COMP_LINE
+        # Re-assemble words to complete
+        for (( i=0, j=0; i < ${#COMP_WORDS[@]}; i++, j++)); do
+            # Is current word not word 0 (the command itself) and is word not
+            # empty and is word made up of just word separator characters to
+            # be excluded and is current word not preceded by whitespace in
+            # original line?
+            while [[ $i -gt 0 && ${COMP_WORDS[$i]} == +([$exclude]) ]]; do
+                # Is word separator not preceded by whitespace in original line
+                # and are we not going to append to word 0 (the command
+                # itself), then append to current word.
+                [[ $line != [$' \t']* ]] && (( j >= 2 )) && ((j--))
+                # Append word separator to current or new word
+                ref="$2[$j]"
+                printf -v "$ref" %s "${(P)ref}${COMP_WORDS[i]}"
+                # Indicate new cword
+                [[ $i == $COMP_CWORD ]] && printf -v "$3" %s "$j"
+                # Remove optional whitespace + word separator from line copy
+                line=${line#*"${COMP_WORDS[$i]}"}
+                # Start new word if word separator in original line is
+                # followed by whitespace.
+                [[ $line == [$' \t']* ]] && ((j++))
+                # Indicate next word if available, else end *both* while and
+                # for loop
+                (( $i < ${#COMP_WORDS[@]} - 1)) && ((i++)) || break 2
+            done
+            # Append word to current word
+            ref="$2[$j]"
+            printf -v "$ref" %s "${(P)ref}${COMP_WORDS[i]}"
+            # Remove optional whitespace + word from line copy
+            line=${line#*"${COMP_WORDS[i]}"}
+            # Indicate new cword
+            [[ $i == $COMP_CWORD ]] && printf -v "$3" %s "$j"
+        done
+        [[ $i == $COMP_CWORD ]] && printf -v "$3" %s "$j"
+    else
+        # No, list of word completions separators hasn't changed;
+        for i in ${(P)COMP_WORDS[@]}; do
+            printf -v "$2[i]" %s "${COMP_WORDS[i]}"
+        done
+    fi
+} # __reassemble_comp_words_by_ref()
+
+
+
+
+if ! type bashcompinit &> /dev/null; then
+    autoload -U compinit && compinit
+    autoload -U bashcompinit && bashcompinit
+
+    if [[ -d "/etc/bash_completion.d" ]]; then
+        while read COMPF; do
+            # ignore here any errors as bash_completion scripts may not be compatible with zsh at all
+            source "$COMPF" #&> /dev/null || true
+        done < <(find /etc/bash_completion.d -type f)
+    fi
+    if [[ -d "$HOME/.zsh_bashcomp.d" ]]; then
+        while read COMPF; do
+            source "$COMPF"
+        done < <(find $HOME/.zsh_bashcomp.d -type f)
+    fi
+fi

@@ -136,3 +136,7 @@ last_exit_code () {
         echo "%{$fg[magenta]%}${last}%{$reset_color%}"
     fi
 }
+
+source $HOME/.zsh_completion
+
+
