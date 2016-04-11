@@ -71,7 +71,7 @@ deploy_configs() {
     deplink .bc "$HOME/.bc"
     deplink .zshrc "$HOME/.zshrc"
     deplink .zsh_completion "$HOME/.zsh_completion"
-    deplink .zsh_completion.d "$HOME/.zsh_completion.d"
+    deplink .zsh_bashcomp.d/ "$HOME/.zsh_bashcomp.d"
     deplink .zshenv "$HOME/.zshenv"
     deplink .zlogout "$HOME/.zlogout"
     safemkdir "$HOME/.config/fish"
