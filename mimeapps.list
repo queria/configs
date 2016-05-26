@@ -10,6 +10,8 @@ application/x-extension-shtml=browser.desktop
 application/xhtml+xml=browser.desktop
 application/x-extension-xhtml=browser.desktop
 application/x-extension-xht=browser.desktop
+application/pdf=okular.desktop
+application/x-pdf=okular.desktop
 inode/directory=dolphin.desktop
 
 [Added Associations]
@@ -24,4 +26,6 @@ application/x-extension-shtml=browser.desktop;
 application/xhtml+xml=browser.desktop;
 application/x-extension-xhtml=browser.desktop;
 application/x-extension-xht=browser.desktop;
+application/pdf=okular.desktop;
+application/x-pdf=okular.desktop;
 image/jpeg=geeqie.desktop;
