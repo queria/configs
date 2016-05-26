@@ -1,3 +1,14 @@
+URxvt*keysym.KP_Prior: \033[5~
+URxvt*keysym.KP_Next: \033[6~
+
+URxvt*keysym.KP_Home: \033[7~
+URxvt*keysym.KP_End:  \033[8~
+
+URxvt*keysym.KP_Up: \033[A
+URxvt*keysym.KP_Down: \033[B
+URxvt*keysym.KP_Left: \033[D
+URxvt*keysym.KP_Right: \033[C
+
 URxvt*dynamicColors: true
 ! URxvt*termName:                       string
 ! URxvt*geometry:                       geometry

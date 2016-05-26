@@ -211,12 +211,6 @@ bindsym $mod+XF86Forward workspace next
 bindsym XF86Back focus left
 bindsym XF86Forward focus right
 
-bindsym KP_Left focus left
-bindsym KP_Right focus right
-bindsym KP_Begin workspace next
-bindsym KP_Up workspace next
-bindsym KP_Down workspace prev
-
 bindsym $mod+j focus left
 bindsym $mod+k focus right
 
