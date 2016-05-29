@@ -196,7 +196,7 @@ bindsym $mod+t exec --no-startup-id $scripts/scrr2urxvt
 bindsym $mod+e exec --no-startup-id $scripts/qslock
 bindsym $mod+l exec --no-startup-id $scripts/qslock noirc
 # suspend+lock
-bindsym $mod+Shift+e exec --no-startup-id "sh -c 'qslock && sleep 0.5 && sudo /usr/sbin/pm-suspend'"
+bindsym $mod+Shift+e exec --no-startup-id "sh -c 'qslock && sleep 0.8 && systemctl suspend'"
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+Delete exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 # shutdown
