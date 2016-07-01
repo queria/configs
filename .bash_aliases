@@ -242,9 +242,10 @@ scpvm() {
         -o User=root "$@" ;
 }
 sshvnc() {
-    if ssh -4 -f -L 5901:localhost:5900 "$@" 'x11vnc -nopw -ncache 10 -localhost -display :0'; then
+    if ssh -4 -f -L 5901:localhost:5900 "$@" 'x11vnc -once -nopw -localhost -display :0'; then
+        # -ncache 10 
         sleep 0.3;
-        vncviewer localhost:5901;
+        vncviewer -PreferredEncoding zlib -QualityLevel 5 -CompressLevel 6 localhost:5901;
     fi
 }
 
