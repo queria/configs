@@ -260,6 +260,16 @@ git-unpersonal() {
     git config --local --unset user.email;
 }
 
+venv() {
+    local selected="/all/src/.venv-${1}/bin/activate"
+    if [[ -z "$1" || "$1" = "--help" || ! -f "$selected" ]]; then
+        echo "Available venvs:";
+        ls -1d /all/src/.venv-*|sed 's/.*\.venv-/ /';
+        return;
+    fi;
+    source "$selected";
+    rehash;
+}
 oslogs() {
     local CWDBEFORE="$(pwd)"
     [[ -f ~/.oslogs.cfg ]] && . ~/.oslogs.cfg
