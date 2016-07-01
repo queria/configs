@@ -169,6 +169,7 @@ for_window [class="URxvt" title="^temp$"] floating enable, move absolute positio
 for_window [title="Planet Explorers"] floating enable
 for_window [title="^Event Tester$"] floating enable
 for_window [title="^God_is_a_Cube-Age_of_DNA$"] floating enable
+for_window [title="^Idling to Rule the Gods$" ] floating enable
 #geometry { "x": 948, "y": 559 }
 
 assign [class="Firefox"] 2
