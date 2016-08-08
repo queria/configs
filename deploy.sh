@@ -97,6 +97,11 @@ deploy_configs() {
     safemkdir "$HOME/.config/openbox"
     deplink openbox.rc.xml "$HOME/.config/openbox/rc.xml"
 
+    safemkdir "$HOME/.config/clipit"
+    deplink clipitrc "$HOME/.config/clipit/clipitrc"
+    safemkdir "$HOME/.local/share/clipit"
+    deplink clipit_excludes "$HOME/.local/share/clipit/excludes"
+
     safemkdir "$HOME/.mplayer"
     deplink mplayer "$HOME/.mplayer/config"
     safemkdir "$HOME/.mpv"
