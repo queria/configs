@@ -22,6 +22,7 @@
     lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
     ll = log --oneline
     ls = log --name-status
+    lsvim = "!_(){ vim -p $(git log --name-status -1 | sed -nr 's/^[A|M]\\W(.*)/\\1/p'); }; _"
     puf = pull --ff-only
     up = pull up master
     amend = commit --amend
