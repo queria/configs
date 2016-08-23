@@ -26,7 +26,7 @@
     puf = pull --ff-only
     up = pull up master
     amend = commit --amend
-    pum = "!git pull; git merged-cleanup"
+    pum = "!_() { o_br=$(git symbolic-ref -q HEAD); o_br=${o_br##refs/heads/}; git checkout master && git pull && git merged-cleanup && [[ ! -z \"$o_br\" ]] && git checkout $o_br; }; _"
     zzz = "!_() { git branch -m $1 zzz___/$1; }; _"
     wake = "!_() { git branch -m $1 ${1/zzz___\\//}; }; _"
 
