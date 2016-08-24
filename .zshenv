@@ -3,6 +3,7 @@ PATH="$HOME/.local/bin:$PATH"
 PATH="$HOME/all/src/scripts:$PATH"
 PATH="$HOME/bin:$PATH"
 [[ -d "$HOME/all/src/os-kit/" ]] && PATH="$PATH:$HOME/all/src/os-kit"
+[[ -d "$HOME/all/src/go/bin" ]] && PATH="$HOME/all/src/go/bin:$PATH"
 export PATH
 [[ -z "$MANPATH" ]] && export MANPATH="$HOME/all/docs/man:$(manpath)"
 
