@@ -263,12 +263,12 @@ if ! type bashcompinit &> /dev/null; then
     autoload -U compinit && compinit
     autoload -U bashcompinit && bashcompinit
 
-    if [[ -d "/etc/bash_completion.d" ]]; then
-        while read COMPF; do
-            # ignore here any errors as bash_completion scripts may not be compatible with zsh at all
-            source "$COMPF" #&> /dev/null || true
-        done < <(find /etc/bash_completion.d/ -type f)
-    fi
+    #if [[ -d "/etc/bash_completion.d" ]]; then
+    #    while read COMPF; do
+    #        # ignore here any errors as bash_completion scripts may not be compatible with zsh at all
+    #        source "$COMPF" #&> /dev/null || true
+    #    done < <(find /etc/bash_completion.d/ -type f)
+    #fi
     if [[ -d "$HOME/.zsh_bashcomp.d" ]]; then
         while read COMPF; do
             source "$COMPF"
