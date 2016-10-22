@@ -97,6 +97,7 @@ deploy_configs() {
     deplink addic7ed "$HOME/.config/addic7ed"
     safemkdir "$HOME/.config/openbox"
     deplink openbox.rc.xml "$HOME/.config/openbox/rc.xml"
+    deplink openbox.rc.xml "$HOME/.config/openbox/lxqt-rc.xml"
 
     safemkdir "$HOME/.config/clipit"
     deplink clipitrc "$HOME/.config/clipit/clipitrc"
