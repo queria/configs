@@ -405,11 +405,11 @@
         <action name="FocusToBottom"/>
         <action name="Unfocus"/>
       </mousebind>
-      <mousebind  button="Button10" action="Release">
+      <!-- <mousebind  button="Button10" action="Release">
         <action name="Execute">
           <command>auto-multiclick</command>
         </action>
-      </mousebind>
+      </mousebind> -->
     </context>
     <context name="Titlebar">
       <mousebind button="Left" action="Drag">
