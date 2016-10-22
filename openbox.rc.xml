@@ -365,6 +365,11 @@
         <command>qxdo stop</command>
       </action>
     </keybind>
+    <keybind key="W+Delete">
+        <action name="Execute">
+            <command>xkill</command>
+        </action>
+    </keybind>
     <keybind key="W-A-y">
       <action name="Execute">
         <command>bash -c 'pkill qxdo; pkill xdotool'</command>
