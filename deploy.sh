@@ -80,6 +80,7 @@ deploy_configs() {
     safemkdir "$HOME/.config"
     safemkdir "$HOME/.local/share/applications"
     deplink mimeapps.list "$HOME/.config/mimeapps.list"
+    deplink mimeapps.list "$HOME/.local/share/mimeapps.list"
     deplink mimeapps.list "$HOME/.local/share/applications/mimeapps.list"
     deplink browser.desktop "$HOME/.local/share/applications/browser.desktop"
 
