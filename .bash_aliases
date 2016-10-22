@@ -18,7 +18,6 @@ alias | grep -q '^\(alias \)\?ll=' && unalias ll
 alias ls="ls --color=auto"
 alias cal='cal -m'
 
-g () { grep "$@" ./*; }
 topp () { top -n 1; }
 ll () { ls -lha --group-directories-first "$@" ; }
 lls () { ll "$@" | less; }
@@ -223,8 +222,6 @@ yum-switch() {
 		sed -i "s/^$DISABLED/#$DISABLED/" $REPODIR$F.repo
 	done
 }
-
-alias gg='git grep'
 
 ssj () {
     ssh -i ~/.ssh/rhos-jenkins \
