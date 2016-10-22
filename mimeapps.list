@@ -29,3 +29,4 @@ application/x-extension-xht=browser.desktop;
 application/pdf=okular.desktop;
 application/x-pdf=okular.desktop;
 image/jpeg=geeqie.desktop;
+inode/directory=dolphin.desktop
