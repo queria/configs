@@ -6,7 +6,7 @@ sudo dnf install \
     strace gdb \
     htop iftop iptraf-ng \
     zsh autojump-zsh \
-    network-manager-applet xosd xbacklight kbd qt5-qttools \
+    network-manager-applet xosd xclip xbacklight kbd qt5-qttools \
     i3 feh fluxbox i3lock rxvt-unicode clipit dunst gwenview \
     git vim-enhanced
 
