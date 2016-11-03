@@ -55,14 +55,14 @@ parse-git-branch() {
         local markE=''
         local stashed="$(git stash list 2>/dev/null| wc -l)"
         local clean="$(git status --porcelain 2>/dev/null| wc -l)"
-        if [[ "$clean" = "0" ]]; then clean="01;30m<clean>"; else clean="00;35m<dirty>"; fi
-        echo -e "$mark\033[00;07m$BR\033[00m$markE \033[$clean+$stashed\033[00m"
+        if [[ "$clean" = "0" ]]; then clean="01;30m\]<clean>"; else clean="00;35m\]<dirty>"; fi
+        echo -e "$mark\[\033[00;07m\]$BR\[\033[00m\]$markE \[\033[$clean+$stashed\033[00m"
     fi
 }
-export PS1='\033[01;32m\u@\h\033[01;32m \w \033[00m '
+export PS1='\[\033[01;32m\]\u@\h\[\033[01;32m\] \w \[\033[00m\] '
 [[ -s "$HOME/.prompt_color" ]] && source "$HOME/.prompt_color"
 #export PS1="\[\033[01;30m=>\$?\[\033[00m  \$(parse-git-branch) \n$PS1"
-export PS1="\033[01;30m=>\$?\033[00m $PS1\$(parse-git-branch)\n\033[01;32m$\033[00m "
+export PS1="\[\033[01;30m\] =>\$?\[\033[00m\] $PS1\$(parse-git-branch)\n\[\033[01;32m\]$\[\033[00m\] "
 
 
 shopt -s histappend
