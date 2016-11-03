@@ -163,13 +163,16 @@ for_window [class="explorer.exe" title="Emperor.exe"] floating enable, border no
 for_window [class="explorer.exe"] floating enable, border none
 for_window [class="winbox.exe"] floating enable
 for_window [class="Winff"] floating enable
-for_window [class="URxvt" title="^calc$"] floating enable, move absolute position 940px 535px
-for_window [class="URxvt" title="^minipython$"] floating enable, move absolute position 940px 535px
-for_window [class="URxvt" title="^temp$"] floating enable, move absolute position 940px 535px
+for_window [class="URxvt" title="^calc$"] floating enable, border pixel 1, move absolute position 940px 535px
+for_window [class="URxvt" title="^minipython$"] floating enable, border pixel 1, move absolute position 940px 535px
+for_window [class="URxvt" title="^temp$"] floating enable, border pixel 1, move absolute position 940px 535px
 for_window [title="Planet Explorers"] floating enable
 for_window [title="^Event Tester$"] floating enable
 for_window [title="^God_is_a_Cube-Age_of_DNA$"] floating enable
 for_window [title="^Idling to Rule the Gods$" ] floating enable
+for_window [class="^google-chrome$"] border pixel 1
+for_window [class="^konversation$"] border pixel 1
+
 #geometry { "x": 948, "y": 559 }
 
 assign [class="Firefox"] 2
