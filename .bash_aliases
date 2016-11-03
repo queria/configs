@@ -34,6 +34,7 @@ cdt () { cd /all/tmp; }
 cdtl () { cd /all/tmp; lll "$@"; }
 
 vw () { FILES=$(which "$@"); if [ "x$FILES" != "x" ]; then vim -p "$FILES"; fi; }
+vf () { FILES=$(find -iname "*$@*"); if [ "x$FILES" != "x" ]; then vim -p "$FILES"; fi; }
 cw () { FILES=$(which "$@"); [[ ! -z "$FILES" ]] && cat $FILES; }
 
 qcal () {
