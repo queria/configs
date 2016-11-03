@@ -15,19 +15,22 @@
     co = checkout
     df = diff
     dfc = diff --cached
-    lg = log -p
-    lom = log master..origin/master --no-merges
-    lomo = log master..origin/master --no-merges --oneline
-    logm = log --no-merges
+    lom = log --no-merges
     lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    log-here = log master..
+    log-master = log ..master
     ll = log --oneline
     ls = log --name-status
     lsvim = "!_(){ vim -p $(git log --name-status -1 | sed -nr 's/^[A|M]\\W(.*)/\\1/p'); }; _"
-    puf = pull --ff-only
-    up = pull up master
+    up = pull --ff-only up master
     amend = commit --amend
-    pum = "!_() { o_br=$(git symbolic-ref -q HEAD); o_br=${o_br##refs/heads/}; git checkout master && git pull && git merged-cleanup && [[ ! -z \"$o_br\" ]] && git checkout $o_br; }; _"
-    pumr = "!_() { o_br=$(git symbolic-ref -q HEAD); o_br=${o_br##refs/heads/}; git checkout master && git pull && git merged-cleanup && [[ ! -z \"$o_br\" ]] && git checkout $o_br && git rebase -i master; }; _"
+    ame = commit --amend
+    reb = rebase -i master
+    con = rebase --continue
+    rev = review
+    revy = review --yes
+    pum = "!_() { o_br=$(git symbolic-ref -q HEAD); o_br=${o_br##refs/heads/}; git checkout master && git pull --ff-only && git merged-cleanup && [[ ! -z \"$o_br\" ]] && git checkout $o_br; }; _"
+    pur = "!_() { o_br=$(git symbolic-ref -q HEAD); o_br=${o_br##refs/heads/}; git checkout master && git pull --ff-only && git merged-cleanup && [[ ! -z \"$o_br\" ]] && git checkout $o_br && git rebase -i master; }; _"
     zzz = "!_() { git branch -m $1 zzz___/$1; }; _"
     wake = "!_() { git branch -m $1 ${1/zzz___\\//}; }; _"
 
@@ -39,6 +42,7 @@
     #pager = 
     #gitproxy = nc localhost 9418
 #/all/src/ngitcached/git-local-proxy
+    whitespace = trailing-space
 
 [push]
 	default = upstream
