@@ -194,6 +194,7 @@ bindsym $mod+Shift+Return workspace 4; exec --no-startup-id /usr/bin/urxvtc -e s
 bindsym $mod+Mod1+Return exec --no-startup-id /usr/bin/urxvtc -title queria -e su - queria
 bindsym $mod+Control+Return exec --no-startup-id /usr/bin/urxvtc -title shadow -e /bin/bash --rcfile ~/.bashnorc
 bindsym $mod+t exec --no-startup-id $scripts/scrr2urxvt
+bindsym $mod+Shift+t exec --no-startup-id $scripts/scrr2ssh office
 
 ### SESSION
 # lock
