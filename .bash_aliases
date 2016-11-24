@@ -392,3 +392,5 @@ preloadstate() {
 light() { dyncol switch queria-dark; }
 dark() { dyncol switch queria; }
 poekill() { pkill PathOfExile.exe; }
+noretry() { find -name \*.retry -print -delete; }
+xmls-from-jjb () { rm -rf /tmp/xmls; mkdir -p /tmp/xmls; jenkins-jobs test -o /tmp/xmls .; }
