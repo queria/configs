@@ -196,6 +196,12 @@
             <y>center</y>
         </action>
     </keybind>
+    <keybind key="W-p">
+        <action name="MoveResizeTo">
+            <width client="yes">965</width>
+            <height client="yes">400</height>
+        </action>
+    </keybind>
     <keybind key="C-F2">
       <action name="GoToDesktop">
         <to>2</to>
@@ -780,6 +786,17 @@
             <x>center</x>
             <y>center</y>
         </position>
+    </application>
+    <application title="Planet Explorers">
+        <decor>no</decor>
+        <position force="yes">
+            <x>center</x>
+            <y>center</y>
+        </position>
+        <size>
+            <width>965</width>
+            <height>400</height>
+        </size>
     </application>
     <application class="explorer.exe">
         <decor>no</decor>
