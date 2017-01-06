@@ -148,6 +148,8 @@ deploy_configs() {
     deplink "/usr/bin/openstack" "$HOME/bin/os"
 
     sudo_deplink vok "/usr/share/X11/xkb/symbols/vok"
+    sudo_copy unfuck-systemd-pager.sh /etc/profile.d/ root:root 644
+    sudo_copy unfuck-systemd-pager.csh /etc/profile.d/ root:root 644
 }
 check_app_presence() {
 	bin_check vim
