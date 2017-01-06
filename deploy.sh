@@ -44,6 +44,39 @@ deplink() {
 sudo_deplink() {
     SUDO="sudo -E" "$MYBIN/deplink" "$@"
 }
+sudo_copy() {
+    local src="$(readlink -f "$1")"
+    local tgt="$2"
+    local own="$3"
+    local perms="$4"
+
+    if [[ -d "$tgt" ]]; then
+        # when dest is dir, append file name for diffing
+        tgt="$(readlink -f "$tgt")/$(basename "$src")"
+    fi
+
+    if [[ -e "$tgt" && ! -f "$tgt" ]]; then
+        fin_message "Unable to copy ${src} as ${tgt} (not a file...), please inspect and fix."
+        return
+    fi
+
+    if diff "$src" "$tgt" &> /dev/null; then
+        echo -e "${CLR_ALREADY}‘$tgt’ == ‘$src’ [already]${CLR_NONE}";
+    else
+        touch "$CHANGED"
+        if [[ -e "$tgt" ]]; then
+            SUDO="sudo -E" bup "$tgt" || fin_message "Unable to backup '$tgt'."
+        fi
+        sudo -E cp -v "$src" "$tgt" || fin_message "Unable to copy '$src' to '$tgt'."
+        if [[ ! -z "$own" ]]; then
+            sudo -E chown "$own" "$tgt" || fin_message "Unable to change ownership on '$tgt'."
+        fi
+        if [[ ! -z "$perms" ]]; then
+            sudo -E chmod "$perms" "$tgt" || fin_message "Unable to change permissions on '$tgt'."
+        fi
+    fi
+}
+
 cmd_check() {
     if ! eval $1 &> /dev/null; then
         touch "$MISSING_CMD"
