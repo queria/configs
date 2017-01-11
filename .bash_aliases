@@ -68,7 +68,7 @@ mpm () {
         echo "Auto-picked $AUTOPICKED"
         ARGS=("${ARGS[@]}" "$AUTOPICKED");
     fi;
-    mpv -vo=null --shuffle "${ARGS[@]}";
+    mpv -vo=null --msg-level=ffmpeg=fatal --shuffle "${ARGS[@]}";
 }
 mps () { addic7ed "$1"; mp "$@"; }
 mpp () { mplayer -demuxer lavf "$@"; }
