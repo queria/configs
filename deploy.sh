@@ -95,6 +95,7 @@ deploy_repos() {
     deprepo https://github.com/robbyrussell/oh-my-zsh.git "$HOME/.oh-my-zsh"
     deprepo git@github.com:tarruda/zsh-autosuggestions.git "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
     deprepo git@github.com:zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+    deprepo git@github.com:agiz/youtube-mpv.git "$HOME/all/src/youtube-mpv"
 }
 deploy_configs() {
     deplink .bash_profile "$HOME/.bash_profile"
@@ -183,5 +184,11 @@ deploy_repos
 deploy_configs
 
 check_app_presence
+
+if [[ ! -f "${MISSING_CMD}" ]]; then
+    if ! ./youtube-mpv-install.sh "$HOME/all/src/youtube-mpv"; then
+        fin_message "youtube-mpv setup, please debug it:\n  ./youtube-mpv-install.sh '$HOME/all/src/youtube-mpv'"
+    fi
+fi
 
 fin_message
