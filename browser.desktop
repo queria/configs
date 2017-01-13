@@ -1,3 +1,4 @@
+#!/usr/bin/env xdg-open
 [Desktop Entry]
 Exec=/home/queria/all/src/scripts/browser
 MimeType=text/html;
