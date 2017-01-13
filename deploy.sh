@@ -167,6 +167,8 @@ check_app_presence() {
     bin_check vncviewer
     bin_check osd_cat
     bin_check dolphin
+    bin_check pip
+    bin_check virtualenv
     bin_check flake8 "python{,3}-flake8"
     bin_check openstack "python-openstackclient"
     cmd_check 'python -c "import jedi"' "python{,3}-jedi"
