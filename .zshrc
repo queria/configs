@@ -49,7 +49,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(autojump bgnotify chucknorris lol gitfast python screen zsh-syntax-highlighting history-substring-search)
+plugins=(autojump bgnotify lol gitfast python screen zsh-syntax-highlighting history-substring-search)
 # zsh-autosuggestions
 
 # User configuration
@@ -60,7 +60,7 @@ source $ZSH/oh-my-zsh.sh
 ##### or i want different behaviour
 #
 # run chucknorris at start of new term
-fortune -a $ZSH/plugins/chucknorris/fortunes
+#fortune -a $ZSH/plugins/chucknorris/fortunes
 #
 # Make zsh know about hosts already accessed by SSH (i don't want rest of the common-aliases)
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
