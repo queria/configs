@@ -196,12 +196,6 @@
             <y>center</y>
         </action>
     </keybind>
-    <keybind key="W-p">
-        <action name="MoveResizeTo">
-            <width client="yes">965</width>
-            <height client="yes">400</height>
-        </action>
-    </keybind>
     <keybind key="C-F2">
       <action name="GoToDesktop">
         <to>2</to>
@@ -380,6 +374,11 @@
       <action name="Execute">
         <command>bash -c 'pkill qxdo; pkill xdotool'</command>
       </action>
+    </keybind>
+    <keybind key="W-p">
+        <action name="Execute">
+            <command>bash -c 'ipython --no-confirm-exit'</command>
+        </action>
     </keybind>
   </keyboard>
   <mouse>
