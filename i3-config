@@ -235,8 +235,8 @@ bindsym $mod+g exec /usr/bin/gvim
 bindsym $mod+h exec --no-startup-id $scripts/headphones on
 bindsym $mod+Shift+h exec --no-startup-id $scripts/headphones off
 bindsym $mod+c exec --no-startup-id /usr/bin/urxvtc -title calc -e /usr/bin/bc
-bindsym $mod+p exec --no-startup-id /usr/bin/urxvtc -title minipython -e ipython
-bindsym $mod+Shift+p exec --no-startup-id /usr/bin/urxvtc -e ipython
+bindsym $mod+p exec --no-startup-id /usr/bin/urxvtc -title minipython -e ipython --no-confirm-exit
+bindsym $mod+Shift+p exec --no-startup-id /usr/bin/urxvtc -e ipython --no-confirm-exit
 
 bindsym $mod+Mod1+s exec --no-startup-id $scripts/qxdo space
 bindsym $mod+Mod1+c exec --no-startup-id $scripts/qxdo
