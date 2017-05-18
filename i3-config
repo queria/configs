@@ -171,6 +171,7 @@ for_window [title="^Event Tester$"] floating enable
 for_window [title="^God_is_a_Cube-Age_of_DNA$"] floating enable
 for_window [title="^Idling to Rule the Gods$" ] floating enable
 for_window [class="^google-chrome$"] border pixel 1
+for_window [class="Steam"] floating enable
 for_window [class="^konversation$"] border pixel 1
 
 #geometry { "x": 948, "y": 559 }
@@ -240,9 +241,9 @@ bindsym $mod+Shift+p exec --no-startup-id /usr/bin/urxvtc -e ipython --no-confir
 
 bindsym $mod+Mod1+s exec --no-startup-id $scripts/qxdo space
 bindsym $mod+Mod1+c exec --no-startup-id $scripts/qxdo
-bindsym XF86Calculator exec --no-startup-id $scripts/qxdo
+#bindsym XF86Calculator exec --no-startup-id $scripts/qxdo
 bindsym $mod+Mod1+x exec --no-startup-id $scripts/qxdo stop
-bindsym XF86HomePage exec --no-startup-id $scripts/qxdo stop
+#bindsym XF86HomePage exec --no-startup-id $scripts/qxdo stop
 bindsym $mod+Mod1+y exec --no-startup-id "sh -c 'pkill qxdo; pkill xdotool'"
 bindsym $mod+o exec --no-startup-id $scripts/os-copy-deploy
 
