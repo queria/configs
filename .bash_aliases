@@ -268,7 +268,9 @@ venv() {
         return;
     fi;
     source "$selected";
-    rehash;
+    if command -v rehash &> /dev/null; then
+        rehash
+    fi
 }
 oslogs() {
     local CWDBEFORE="$(pwd)"
