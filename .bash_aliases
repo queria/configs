@@ -100,7 +100,7 @@ mplast () {
         # otherwise the subsfor == lastf
 
         [[ -e "${subs}" ]] || addic7ed "$subsfor"
-        [[ -e "${subs}" ]] && opts=("${opts[@]}" "-sub" "${subs}")
+        [[ -e "${subs}" ]] && opts=("${opts[@]}" "-sub-file" "${subs}")
     fi
 
     set -x;
@@ -112,7 +112,7 @@ mplast () {
     if [[ -z "${subs}" ]]; then
         echo "mplayer \"${lastffinal}\"";
     else
-        echo "mplayer -sub \"${subs}\" \"${lastffinal}\"";
+        echo "mplayer -sub-file \"${subs}\" \"${lastffinal}\"";
     fi
     echo "";
 }
