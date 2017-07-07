@@ -11,7 +11,7 @@ URxvt*keysym.KP_Right: \033[C
 
 URxvt*dynamicColors: true
 ! URxvt*termName:                       string
-! URxvt*geometry:                       geometry
+URxvt*geometry:                       180x60
 ! URxvt*chdir:                          string
 ! URxvt*reverseVideo:                   boolean
 ! URxvt*loginShell:                     boolean

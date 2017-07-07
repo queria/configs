@@ -154,7 +154,7 @@ new_window normal
 hide_edge_borders both
 default_orientation auto
 workspace_layout tabbed
-floating_minimum_size -1 x -1
+floating_minimum_size 1 x 1
 
 for_window [title="QSRun"] floating enable, border none
 #for_window [class="Firefox"] move container to workspace 2, workspace 2
@@ -163,9 +163,9 @@ for_window [class="explorer.exe" title="Emperor.exe"] floating enable, border no
 for_window [class="explorer.exe"] floating enable, border none
 for_window [class="winbox.exe"] floating enable
 for_window [class="Winff"] floating enable
-for_window [class="URxvt" title="^calc$"] floating enable, border pixel 1, move absolute position 940px 535px
-for_window [class="URxvt" title="^minipython$"] floating enable, border pixel 1, move absolute position 940px 535px
-for_window [class="URxvt" title="^temp$"] floating enable, border pixel 1, move absolute position 940px 535px
+for_window [class="URxvt" title="^calc$"] floating enable, border pixel 1, move absolute position 240px 135px
+for_window [class="URxvt" title="^minipython$"] floating enable, border pixel 1, move absolute position 240px 135px
+for_window [class="URxvt" title="^temp$"] floating enable, border pixel 1, move absolute position 240px 135px
 for_window [title="Planet Explorers"] floating enable
 for_window [title="^Event Tester$"] floating enable
 for_window [title="^God_is_a_Cube-Age_of_DNA$"] floating enable
