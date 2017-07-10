@@ -124,12 +124,7 @@ deploy_configs() {
     deplink .Xdefaults "$HOME/.Xdefaults"
 
     safemkdir "$HOME/.i3"
-    # backward compat - changed from symlink to bash generated config
-    if [[ -h "$HOME/.i3/config" ]]; then
-        echo "Converting i3 config from symlink to generated"
-        rm -vf "$HOME/.i3/config"
-    fi
-    ./i3-config.sh > "$HOME/.i3/config"
+    gen i3-config.sh "$HOME/.i3/config"
     deplink i3-status "$HOME/.i3status.conf"
     safemkdir "$HOME/.config/dunst"
     deplink dunstrc "$HOME/.config/dunst/dunstrc"
