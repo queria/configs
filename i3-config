@@ -248,3 +248,4 @@ bindsym $mod+Mod1+x exec --no-startup-id $scripts/qxdo stop
 bindsym $mod+Mod1+y exec --no-startup-id "sh -c 'pkill qxdo; pkill xdotool'"
 bindsym $mod+o exec --no-startup-id $scripts/os-copy-deploy
 
+bindsym $mod+Shift+f exec --no-startup-id $scripts/remind-me 5 Forge
