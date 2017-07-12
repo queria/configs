@@ -37,6 +37,10 @@ case "$(hostname)" in
         echo "workspace 4 output eDP1"
         ;;
     "satdesk")
+        echo "workspace 1 output DVI-I-1"
+        echo "workspace 2 output DVI-I-1"
+        echo "workspace 3 output DVI-D-0"
+        echo "workspace 4 output DVI-D-0"
         ;;
 esac
 
