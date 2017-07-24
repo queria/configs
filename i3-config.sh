@@ -41,6 +41,8 @@ case "$(hostname)" in
         echo "workspace 2 output DVI-I-1"
         echo "workspace 3 output DVI-D-0"
         echo "workspace 4 output DVI-D-0"
+
+        echo 'bindsym $mod+Shift+m exec --no-startup-id $scripts/monitor-switch.sh --safe home2'
         ;;
 esac
 
@@ -70,6 +72,7 @@ bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
 bindsym $mod+Shift+l move up
 bindsym $mod+Shift+semicolon move right
+bindsym $mod+c move position center
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -175,7 +178,6 @@ for_window [class="explorer.exe" title="Emperor.exe"] floating enable, border no
 for_window [class="explorer.exe"] floating enable, border none
 for_window [class="winbox.exe"] floating enable
 for_window [class="Winff"] floating enable
-for_window [class="URxvt" title="^calc$"] floating enable, border pixel 1, move absolute position 240px 135px
 for_window [class="URxvt" title="^minipython$"] floating enable, border pixel 1, move absolute position 240px 135px
 for_window [class="URxvt" title="^temp$"] floating enable, border pixel 1, move absolute position 240px 135px
 for_window [title="Planet Explorers"] floating enable
@@ -248,10 +250,10 @@ bindsym $mod+i exec /usr/bin/konversation
 bindsym $mod+g exec /usr/bin/gvim
 bindsym $mod+h exec --no-startup-id $scripts/headphones on
 bindsym $mod+Shift+h exec --no-startup-id $scripts/headphones off
-bindsym $mod+c exec --no-startup-id /usr/bin/urxvtc -title calc -e /usr/bin/bc
 bindsym $mod+p exec --no-startup-id /usr/bin/urxvtc -title minipython -e ipython --no-confirm-exit
 bindsym $mod+Shift+p exec --no-startup-id /usr/bin/urxvtc -e ipython --no-confirm-exit
 
+bindsym $mod+s exec --no-startup-id $scripts/snap
 bindsym $mod+Mod1+s exec --no-startup-id $scripts/qxdo space
 bindsym $mod+Mod1+c exec --no-startup-id $scripts/qxdo
 #bindsym XF86Calculator exec --no-startup-id $scripts/qxdo
