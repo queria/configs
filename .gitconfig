@@ -29,6 +29,7 @@
     con = rebase --continue
     rev = review
     revy = review --yes
+    puff = pull --ff-only
     pum = "!_() { o_br=$(git symbolic-ref -q HEAD); o_br=${o_br##refs/heads/}; git checkout master && git pull --ff-only && git merged-cleanup && [[ ! -z \"$o_br\" ]] && git checkout $o_br; }; _"
     pumj2 = "!_() { o_br=$(git symbolic-ref -q HEAD); o_br=${o_br##refs/heads/}; git checkout jenkins2 && git pull --ff-only && git merged-cleanup jenkins2 && [[ ! -z \"$o_br\" ]] && git checkout $o_br; }; _"
     pur = "!_() { o_br=$(git symbolic-ref -q HEAD); o_br=${o_br##refs/heads/}; git checkout master && git pull --ff-only && git merged-cleanup && [[ ! -z \"$o_br\" ]] && git checkout $o_br && git rebase -i master; }; _"
