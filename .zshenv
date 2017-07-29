@@ -14,5 +14,6 @@ export LESS="-FRX"
 
 export LIBVIRT_DEFAULT_URI=qemu:///system
 export GOPATH=$HOME/all/src/go
+export QT_QPA_PLATFORMTHEME=qt5ct
 
 [[ -f ~/keystonerc_psedlak ]] && source ~/keystonerc_psedlak

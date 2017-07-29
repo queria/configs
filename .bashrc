@@ -18,6 +18,7 @@ fi
 export EDITOR=/usr/bin/vim
 export TERMINAL=xterm
 export BC_ENV_ARGS="$HOME/.bc"
+export QT_QPA_PLATFORMTHEME=qt5ct
 
 #PATH="$HOME/all/src/go/bin:$PATH"
 PATH="$HOME/.local/bin:$PATH"
