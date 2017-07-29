@@ -263,4 +263,5 @@ bindsym $mod+Mod1+y exec --no-startup-id "sh -c 'pkill qxdo; pkill xdotool'"
 bindsym $mod+o exec --no-startup-id $scripts/os-copy-deploy
 
 bindsym $mod+Shift+f exec --no-startup-id $scripts/remind-me 5 Forge
+bindsym $mod+v exec --no-startup-id $scripts/kbmap.sh
 EOF
