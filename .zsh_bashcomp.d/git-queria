@@ -1,0 +1,11 @@
+_git_verify () {
+    echo "$cur" >> /tmp/x1
+
+    case "$cur" in
+        -*) __gitcomp "--all --ignore-missing --verify-branch"
+            return
+        ;;
+    esac
+
+    __gitcomp_nl "$(__git_refs)"
+}
