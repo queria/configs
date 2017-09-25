@@ -144,6 +144,24 @@ last_exit_code () {
     fi
 }
 
+## selecta based fuzzy-file-path-completion
+# found at https://github.com/bedge/dotfiles/commit/a44466cf48bfe6520fa782a1423705aa80e8b3e4
+function insert-selecta-path-in-command-line() {
+    local selected_path
+    # Print a newline or we'll clobber the old prompt.
+    echo
+    # Find the path; abort if the user doesn't select anything.
+    selected_path=$(find * -type f | selecta) || return
+    # Append the selection to the current command buffer.
+    eval 'LBUFFER="$LBUFFER$selected_path "'
+    # Rdraw the prompt since Selecta has drawn several new lines of text.
+    zle reset-prompt
+}
+# Create the zle widget
+zle -N insert-selecta-path-in-command-line
+# Bind the key to the newly created widget
+bindkey "^N" "insert-selecta-path-in-command-line"
+
 source $HOME/.zsh_completion
 
 
