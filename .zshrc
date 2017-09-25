@@ -105,6 +105,13 @@ setopt NO_HUP
 setopt HISTIGNORESPACE
 unsetopt share_history
 
+# disable bracketed paste (aka safe paste)
+# to not get special chars escaped in pasted test
+# case: curl '<url-pasted>' to not escape ? or similar
+#       as i do always quote whole url myself,
+#       and want it consistent with any/all remote machines
+unset zle_bracketed_paste
+
 [ -z "$ZSH_CDHOME" ] && export ZSH_CDHOME=1 && cd $HOME
 
 bgnotify_formatted () {
