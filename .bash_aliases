@@ -27,6 +27,7 @@ lll () { ll -tr "$@"|tail; }
 llS () { ll -Sr "$@"|tail; }
 dff () { df -x devtmpfs -x iso9660 -x tmpfs -h --output=target,pcent,ipcent,size,used,avail,fstype,source; }
 psg () { ps -ef | grep -v 'grep' | grep -i "$@"; }
+pswine () { ps -ef|grep -E '[.]exe|[w]ine'; }
 scrr () { screen -d -R $@; }
 tmx () { tmux has &>/dev/null && tmux attach -d -t 0 || tmux ; }
 cdl () { cd "$1" && ll; }
