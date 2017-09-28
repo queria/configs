@@ -49,12 +49,6 @@ esac
 cat <<"EOF"
 
 
-# start dmenu (a program launcher)
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-
 # change focus
 bindsym $mod+comma focus left
 bindsym $mod+semicolon focus right
@@ -98,12 +92,6 @@ bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+Home focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
 
 # switch to workspace
 bindsym Control+F1 workspace 1
@@ -184,10 +172,14 @@ for_window [title="Planet Explorers"] floating enable
 for_window [title="^Event Tester$"] floating enable
 for_window [title="^God_is_a_Cube-Age_of_DNA$"] floating enable
 for_window [title="^Idling to Rule the Gods$" ] floating enable
+for_window [title="^Age of Empires II: HD Edition$" ] floating enable
 for_window [class="^google-chrome$"] border pixel 1
 for_window [class="^Steam$"] floating enable
 for_window [class="^Steam$" title="^Steam$"] floating disable
 for_window [class="^konversation$"] border pixel 1
+for_window [title="^Default - Wine desktop$"] floating enable
+for_window [class="^explorer.exe"] floating enable
+for_window [class="Spellforce.exe"] floating enable, border pixel 1
 
 #geometry { "x": 948, "y": 559 }
 
@@ -235,9 +227,6 @@ bindsym $mod+XF86Forward workspace next
 bindsym XF86Back focus left
 bindsym XF86Forward focus right
 
-bindsym $mod+j focus left
-bindsym $mod+k focus right
-
 # apps
 bindsym $mod+n exec --no-startup-id $HOME/all/src/nmcli-dmenu/nmcli_dmenu
 bindsym Mod1+F2 exec --no-startup-id /usr/local/bin/dmenu_hist
@@ -252,6 +241,7 @@ bindsym $mod+h exec --no-startup-id $scripts/headphones on
 bindsym $mod+Shift+h exec --no-startup-id $scripts/headphones off
 bindsym $mod+p exec --no-startup-id /usr/bin/urxvtc -title minipython -e ipython --no-confirm-exit
 bindsym $mod+Shift+p exec --no-startup-id /usr/bin/urxvtc -e ipython --no-confirm-exit
+bindsym $mod+v exec pavucontrol
 
 bindsym $mod+s exec --no-startup-id $scripts/snap
 bindsym $mod+Mod1+s exec --no-startup-id $scripts/qxdo space
@@ -263,5 +253,5 @@ bindsym $mod+Mod1+y exec --no-startup-id "sh -c 'pkill qxdo; pkill xdotool'"
 bindsym $mod+o exec --no-startup-id $scripts/os-copy-deploy
 
 bindsym $mod+Shift+f exec --no-startup-id $scripts/remind-me 5 Forge
-bindsym $mod+v exec --no-startup-id $scripts/kbmap.sh
+bindsym $mod+k exec --no-startup-id $scripts/kbmap.sh
 EOF
