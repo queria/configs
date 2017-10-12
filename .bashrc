@@ -92,6 +92,5 @@ uservm() {
 export LIBVIRT_DEFAULT_URI=qemu:///system
 export GOPATH=$HOME/all/src/go
 
-if [[ -f ~/keystonerc_psedlak ]]; then
-    source ~/keystonerc_psedlak;
-fi
+[[ -f ~/.bashrc_local ]] && source ~/.bashrc_local
+[[ -f ~/keystonerc ]] && source ~/keystonerc
