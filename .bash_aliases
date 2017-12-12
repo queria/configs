@@ -399,3 +399,4 @@ dark() { dyncol switch queria; }
 poekill() { pkill PathOfExile.exe; }
 noretry() { find -name \*.retry -print -delete; }
 xmls-from-jjb () { rm -rf /tmp/xmls; mkdir -p /tmp/xmls; jenkins-jobs test -o /tmp/xmls .; }
+gamekeeper() { rustsrv_stat.py 91.121.90.23 28025; }
