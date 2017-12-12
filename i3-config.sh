@@ -174,7 +174,7 @@ for_window [title="^God_is_a_Cube-Age_of_DNA$"] floating enable
 for_window [title="^Idling to Rule the Gods$" ] floating enable
 for_window [title="^Age of Empires II: HD Edition$" ] floating enable
 for_window [class="^google-chrome$"] border pixel 1
-for_window [class="^Steam$"] floating enable
+for_window [class="^Steam$"] floating enable, move container to workspace 4
 for_window [class="^Steam$" title="^Steam$"] floating disable
 for_window [class="^konversation$"] border pixel 1
 for_window [title="^Default - Wine desktop$"] floating enable
