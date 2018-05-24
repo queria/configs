@@ -274,80 +274,50 @@ venv() {
     fi
 }
 oslogs() {
-    local CWDBEFORE="$(pwd)"
     [[ -f ~/.oslogs.cfg ]] && . ~/.oslogs.cfg
-    # put 'local VAR=value' lines in the config
-    local LOGS="${LOGS:-/all/tmp/oslogs}"
-    local LOGS_SRC="${LOGS_SRC:-/all/tmp}"
-    local PATT="${PATT:-logs-jenkins*.tar.bz2}"
-    local ITER=""
-    local DIRNAME=""
-    local SINGLE=""
-    local FILES=""
-    local NEWNAME=""
-
-
-    if [[ "$1" == "cd" ]]; then
-        DOCD="yes"
+    if [[ "$1" = "--help" || -z "$1" ]]; then
+        echo "Usage:"
+        echo "  oslogs <job-name/buildN> [tgz-file-name]"
+        return 1
+    fi
+    if [[ "$1" = "-v" ]]; then
         shift
+        set -x
     fi
-    if [[ ! -z "$1" ]]; then
-        NEWNAME="$1"
-        shift
-        if [[ -e "${LOGS}/${NEWNAME}" ]]; then
-            echo "Unable to use $NEWNAME as name for extracted oslogs."
-            echo "${LOGS}/${NEWNAME} already exists!"
-            exit 1
-        fi
-        echo "Will try to rename to ${NEWNAME}"
+    JOBBUILD="$1"
+    ARCHIVE="${2:-undercloud-0.tar.gz}"
+
+    # strip url prefix
+    JOBBUILD="${JOBBUILD##http*\/job\/}"
+    # strip trailing slash
+    JOBBUILD="${JOBBUILD%\/}"
+
+    JENKINS_URLPREF="${1%${JOBBUILD}}"
+    JENKINS_URLPREF="${JENKINS_URLPREF:-${JENKINS_URL:-https://rhos-qe-jenkins.rhev-ci-vms.eng.rdu2.redhat.com}}"
+
+    DEST="${TMPDIR:-/tmp}/jenkins-log.${JOBBUILD//\//_}"
+    DEST_FILE="${DEST}/${ARCHIVE}"
+    DEST_DIR="${DEST}/${ARCHIVE%.tar.gz}"
+
+    if [[ -d "$DEST" ]]; then
+        echo "Directory '$DEST' already exists, reusing ..."
     fi
+    mkdir -p "$DEST"
 
 
-    if [[ "${DOCD}" == "yes" ]]; then
-        CWDBEFORE="${LOGS}"
-    fi
-
-
-    mkdir -p "$LOGS"
-    cd "$LOGS_SRC"
-
-    FILES="$(ls -1 $PATT)"
-    for ITER in $FILES; do
-        echo "New logs $ITER"
-        mv "$ITER" "$LOGS"
-    done
-    [[ -z "$FILES" ]] && echo "No newly downloaded logs"
-
-
-    cd "$LOGS"
-
-    mkdir -p _archive;
-
-    FILES="$(ls -1 $PATT)"
-    for ITER in $FILES; do
-        tar xf "$ITER";
-        mv "$ITER" _archive
-        DIRNAME="${ITER%.tar.bz2}"
-        chmod u+w $DIRNAME/*/root
-        if [[ -z "$SINGLE" ]]; then
-            SINGLE="$DIRNAME"
-        else
-            SINGLE="-multiple-"
-        fi
-    done
-    [[ -z "$FILES" ]] && echo "No logs to uncompress"
-
-    if [[ ! -z "$SINGLE" && "$SINGLE" != "-multiple-" ]]; then
-        if [[ ! -z "$NEWNAME" ]]; then
-            echo "renaming $SINGLE => $NEWNAME"
-            mv "$SINGLE" "$NEWNAME"
-            SINGLE="$NEWNAME"
-        fi
-        cd "$SINGLE"
-        pwd
+    if [[ -f "$DEST_FILE" ]]; then
+        echo "Archive $ARCHIVE already present, reusing ..."
     else
-        cd "$CWDBEFORE"
+        curl --insecure --fail --location "${JENKINS_URLPREF}/job/${JOBBUILD}/artifact/${ARCHIVE}" -o "${DEST_FILE}"
     fi
+
+    cd "$DEST"
+    if [[ -d "$DEST_DIR" ]]; then
+        echo "Unpacked directory $DEST_DIR already present, nothing to do ..."
+    else
+        tar xf "$ARCHIVE"
+    fi
+    cd "$DEST_DIR"
 }
 
 
